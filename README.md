@@ -1,3 +1,15 @@
+# Text Tools
+
+## Planned Features
+_For v1.0_
+- Text Transform
+    - To Lowercase
+    - To Uppercase
+    - To Snake Case
+    - Reverse
+- Generate Hashes (MD5, SHA1, SHA256...)
+- Password Generator
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
