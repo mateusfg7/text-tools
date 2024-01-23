@@ -1,13 +1,34 @@
 # Text Tools
+**refs**:
+- _https://convertcase.net/_
+- _browserling.com/tools/all-hashes_
 
 ## Planned Features
 _For v1.0_
 - Text Transform
-    - To Lowercase
-    - To Uppercase
-    - To Snake Case
-    - Reverse
+    - Sentence Case `mateus felipe gonçalves -> Mateus felipe gonçalves`
+    - Lowercase `Mateus Felipe -> mateus felipe`
+    - Uppercase `Mateus Felipe -> MATEUS FELIPE`
+    - Snake Case `MaTeus FeliPe -> mateus felipe`
+    - Capitalized Case `mateUS feLipe -> Mateus Felipe`
+    - Alternating Case `Mateus Felipe -> mAtEuS fElIpE`
+    - Inverse Case `MatEus FeLiPe -> mATeUS fElIpE`
+    - Reverse `Mateus Felipe -> epileF suetaM`
+    - Text Statistics
+        - Character Count
+        - Word Count
+        - Sentence Count
+        - Line Count
 - Generate Hashes (MD5, SHA1, SHA256...)
+- Converter
+    - `(HEX|BIN|DEC) -> (HEX|BIN|DEC)`
+    - `(JSON|CSV) -> (JSON|CSV)`
+    - URl Encoder/Decoder
+- Ciphers
+    - Caesar
+    - ROT13
+    - Rail Fence
+    - Morse
 - Password Generator
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
