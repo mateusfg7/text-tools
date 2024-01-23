@@ -3,9 +3,8 @@ FROM gitpod/workspace-node:latest
 # Update system
 RUN sudo apt update && sudo apt upgrade -y
 
-# Setup Pnpm
-RUN corepack enable
-RUN npm i -g pnpm@latest
+# Setup Bun
+RUN curl -fsSL https://bun.sh/install | bash
 
 # Setup ZSH with Oh-My-Zsh
 RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.5/zsh-in-docker.sh)" -- \
