@@ -1,16 +1,30 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { ReactNode } from "react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+import {
+  ArrowLeftRight,
+  AsteriskSquare,
+  BarChart3,
+  Fingerprint,
+  KeyRound,
+  LucideIcon,
+  Text,
+  Wand2,
+} from "lucide-react";
+
+import { Separator } from "~/shared/components/separator";
 
 const NavbarItem = ({
   title,
   path,
+  Icon,
   disabled = false,
 }: {
   title: string;
   path: string;
+  Icon: LucideIcon;
   disabled?: boolean;
 }) => {
   const pathname = usePathname();
@@ -23,7 +37,7 @@ const NavbarItem = ({
     return (
       <button
         onClick={alertMessage}
-        className="flex w-full items-stretch gap-1 group hover:cursor-pointer opacity-60"
+        className="flex w-full items-stretch gap-1 group hover:cursor-pointer opacity-40"
       >
         <span
           data-selected={selected}
@@ -33,7 +47,7 @@ const NavbarItem = ({
           data-selected={selected}
           className="inline-flex data-[selected='true']:bg-slate-600/5 items-center gap-1 group-hover:bg-slate-600/10 px-1 py-1.5 leading-none rounded-lg flex-1"
         >
-          <span>[X]</span>
+          <Icon size="1em" className="text-base opacity-70" strokeWidth={1.5} />
           <span>{title}</span>
         </span>
       </button>
@@ -53,8 +67,13 @@ const NavbarItem = ({
         data-selected={selected}
         className="inline-flex data-[selected='true']:bg-slate-600/5 items-center gap-1 group-hover:bg-slate-600/10 px-1 py-1.5 leading-none rounded-lg flex-1"
       >
-        <span>[X]</span>
-        <span>{title}</span>
+        <Icon size="1em" className="text-base opacity-70" strokeWidth={1.5} />
+        <span
+          data-selected={selected}
+          className="data-[selected='true']:font-bold"
+        >
+          {title}
+        </span>
       </span>
     </Link>
   );
@@ -68,34 +87,62 @@ const Section = ({
   children: ReactNode;
 }) => (
   <div className="space-y-1">
-    <span className="px-3 text-sm opacity-60">{title}</span>
+    <span className="px-3 text-sm opacity-70">{title}</span>
     <div>{children}</div>
   </div>
 );
 
-const Divider = () => <div className="bg-slate-100 w-full rounded-full h-px" />;
-
 export function Navbar() {
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 text-lg">
       <Section title="Text">
-        <NavbarItem title="Transform" path="/text/transform" />
-        <NavbarItem disabled title="Styling" path="/text/styling" />
-        <NavbarItem disabled title="Statistics" path="/text/statistics" />
+        <NavbarItem Icon={Text} title="Transform" path="/text/transform" />
+        <NavbarItem
+          disabled
+          Icon={Wand2}
+          title="Styling"
+          path="/text/styling"
+        />
+        <NavbarItem
+          disabled
+          Icon={BarChart3}
+          title="Statistics"
+          path="/text/statistics"
+        />
       </Section>
 
-      <Divider />
+      <Separator />
 
       <Section title="Cryptography">
-        <NavbarItem disabled title="Ciphers" path="/cryptography/ciphers" />
-        <NavbarItem disabled title="Hash functions" path="/cryptography/hash" />
+        <NavbarItem
+          disabled
+          Icon={AsteriskSquare}
+          title="Ciphers"
+          path="/cryptography/ciphers"
+        />
+        <NavbarItem
+          disabled
+          Icon={Fingerprint}
+          title="Hash functions"
+          path="/cryptography/hash"
+        />
       </Section>
 
-      <Divider />
+      <Separator />
 
       <Section title="Misc">
-        <NavbarItem disabled title="Converter" path="/misc/converter" />
-        <NavbarItem disabled title="Password Generator" path="/misc/password" />
+        <NavbarItem
+          disabled
+          Icon={ArrowLeftRight}
+          title="Converter"
+          path="/misc/converter"
+        />
+        <NavbarItem
+          disabled
+          Icon={KeyRound}
+          title="Password Generator"
+          path="/misc/password"
+        />
       </Section>
     </div>
   );
