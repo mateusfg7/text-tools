@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.variable}>{children}</body>
+      <body className={`${inter.variable} px-24 py-10`}>{children}</body>
     </html>
   );
 }
