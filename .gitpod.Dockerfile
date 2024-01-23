@@ -3,9 +3,6 @@ FROM gitpod/workspace-node:latest
 # Update system
 RUN sudo apt update && sudo apt upgrade -y
 
-# Setup Bun
-RUN curl -fsSL https://bun.sh/install | bash
-
 # Setup ZSH with Oh-My-Zsh
 RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.5/zsh-in-docker.sh)" -- \
   -t https://github.com/denysdovhan/spaceship-prompt \
@@ -16,3 +13,6 @@ RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/
 
 
 ENV SHELL=/usr/bin/zsh
+
+# Setup Bun
+RUN curl -fsSL https://bun.sh/install | bash
