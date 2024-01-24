@@ -27,18 +27,30 @@ const Section = ({
   </div>
 );
 
-export function Navbar() {
+type Props = {
+  isOnDrawer?: boolean;
+};
+export function Navbar({ isOnDrawer = false }: Props) {
   return (
-    <div className="space-y-4 text-lg">
+    <div className="space-y-4 text-lg p-7 md:p-0">
       <Section title="Text">
-        <NavbarItem Icon={Text} title="Transform" path="/text/transform" />
         <NavbarItem
+          isOnDrawer={isOnDrawer}
+          Icon={Text}
+          title="Transform"
+          path="/text/transform"
+        />
+
+        <NavbarItem
+          isOnDrawer={isOnDrawer}
           disabled
           Icon={Wand2}
           title="Styling"
           path="/text/styling"
         />
+
         <NavbarItem
+          isOnDrawer={isOnDrawer}
           disabled
           Icon={BarChart3}
           title="Statistics"
@@ -50,12 +62,15 @@ export function Navbar() {
 
       <Section title="Cryptography">
         <NavbarItem
+          isOnDrawer={isOnDrawer}
           disabled
           Icon={AsteriskSquare}
           title="Ciphers"
           path="/cryptography/ciphers"
         />
+
         <NavbarItem
+          isOnDrawer={isOnDrawer}
           disabled
           Icon={Fingerprint}
           title="Hash functions"
@@ -67,12 +82,15 @@ export function Navbar() {
 
       <Section title="Misc">
         <NavbarItem
+          isOnDrawer={isOnDrawer}
           disabled
           Icon={ArrowLeftRight}
           title="Converter"
           path="/misc/converter"
         />
+
         <NavbarItem
+          isOnDrawer={isOnDrawer}
           disabled
           Icon={KeyRound}
           title="Password Generator"

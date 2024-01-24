@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} px-24 py-10`}>
+      <body className={`${inter.variable} p-5 md:px-24 md:py-10`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -34,7 +34,9 @@ export default function RootLayout({
           <div className="flex flex-col gap-10">
             <Header />
             <div className="flex-1 flex gap-20">
-              <Navbar />
+              <div className="hidden md:block">
+                <Navbar />
+              </div>
               <div className="flex-1">{children}</div>
             </div>
           </div>
