@@ -1,6 +1,7 @@
-import { LucideIcon } from "lucide-react";
+import { AlertTriangle, LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { toast } from "sonner";
 
 export const NavbarItem = ({
   title,
@@ -17,7 +18,16 @@ export const NavbarItem = ({
 
   const selected = pathname === path;
 
-  const alertMessage = () => alert("Under construction");
+  const alertMessage = () =>
+    toast.warning(`Under construction`, {
+      icon: (
+        <AlertTriangle
+          size="1em"
+          className="text-base text-slate-950 dark:text-slate-100 fill-slate-950/20 dark:fill-slate-100/20"
+        />
+      ),
+      description: `${title} page has not been developed yet.`,
+    });
 
   if (disabled) {
     return (
