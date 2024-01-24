@@ -6,7 +6,7 @@
 ## Planned Features
 _For v1.0_
 - Text Transform
-    - Sentence Case `mateus felipe gonçalves -> Mateus felipe gonçalves`
+    - Sentence Case `mateus Felipe gonçalves -> Mateus felipe gonçalves`
     - Lowercase `Mateus Felipe -> mateus felipe`
     - Uppercase `Mateus Felipe -> MATEUS FELIPE`
     - Snake Case `MaTeus FeliPe -> mateus felipe`
@@ -32,6 +32,7 @@ _For v1.0_
 - Password Generator
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
 
 ## Getting Started
 
@@ -67,3 +68,9 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## More examples of transform
+
+Case | Original | Transformed
+---|---|---
+Sentence | "i Like TURTLES. dO You? awesome! hahaha. lol!!! hat's Going on????" | "I like turtles. Do you? Awesome! Hahaha. Lol!!! Hat's going on????"
