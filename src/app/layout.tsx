@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
-import "./globals.css";
+import { Toaster } from "~/shared/components/sonner";
+
 import { Header } from "./_components/header";
 import { Navbar } from "./_components/navbar";
+
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -20,6 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} px-24 py-10`}>
+        <Toaster />
         <div className="flex flex-col gap-10">
           <Header />
           <div className="flex-1 flex gap-20">
