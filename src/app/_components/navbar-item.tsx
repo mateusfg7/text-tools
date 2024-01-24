@@ -37,14 +37,19 @@ export const NavbarItem = ({
       >
         <span
           data-selected={selected}
-          className="data-[selected='true']:bg-blue-600/70 w-1 rounded-full"
+          className="data-[selected='true']:bg-primary w-1 rounded-full"
         />
         <span
           data-selected={selected}
-          className="inline-flex data-[selected='true']:bg-slate-600/5 items-center gap-1 group-hover:bg-slate-600/10 px-1 py-1.5 leading-none rounded-lg flex-1"
+          className="inline-flex data-[selected='true']:bg-primary-foreground text-primary items-center gap-1 group-hover:bg-accent group-hover:text-accent-foreground px-1 py-1.5 leading-none rounded-lg flex-1"
         >
           <Icon size="1em" className="text-base opacity-70" strokeWidth={1.5} />
-          <span>{title}</span>
+          <span
+            data-selected={selected}
+            className="data-[selected='true']:font-bold"
+          >
+            {title}
+          </span>
         </span>
       </button>
     );
@@ -57,11 +62,11 @@ export const NavbarItem = ({
     >
       <span
         data-selected={selected}
-        className="data-[selected='true']:bg-blue-600/70 w-1 rounded-full"
+        className="data-[selected='true']:bg-primary w-1 rounded-full"
       />
       <span
         data-selected={selected}
-        className="inline-flex data-[selected='true']:bg-slate-600/5 items-center gap-1 group-hover:bg-slate-600/10 px-1 py-1.5 leading-none rounded-lg flex-1"
+        className="inline-flex data-[selected='true']:bg-primary-foreground text-primary items-center gap-1 group-hover:bg-accent group-hover:text-accent-foreground px-1 py-1.5 leading-none rounded-lg flex-1"
       >
         <Icon size="1em" className="text-base opacity-70" strokeWidth={1.5} />
         <span
