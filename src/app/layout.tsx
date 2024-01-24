@@ -5,6 +5,7 @@ import { Toaster } from "~/shared/components/sonner";
 
 import { Header } from "./_components/header";
 import { Navbar } from "./_components/navbar";
+import { ThemeProvider } from "./_components/theme-provider";
 
 import "./globals.css";
 
@@ -23,14 +24,21 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} px-24 py-10`}>
-        <Toaster />
-        <div className="flex flex-col gap-10">
-          <Header />
-          <div className="flex-1 flex gap-20">
-            <Navbar />
-            <div className="flex-1">{children}</div>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Toaster />
+          <div className="flex flex-col gap-10">
+            <Header />
+            <div className="flex-1 flex gap-20">
+              <Navbar />
+              <div className="flex-1">{children}</div>
+            </div>
           </div>
-        </div>
+        </ThemeProvider>
       </body>
     </html>
   );
