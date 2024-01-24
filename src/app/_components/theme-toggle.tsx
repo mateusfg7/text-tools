@@ -22,7 +22,8 @@ const TriggerButton = () => (
       />
       <Moon
         size="1em"
-        className="absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
+        strokeWidth={1.5}
+        className="absolute text-xl rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
       />
       <span className="sr-only">Toggle theme</span>
     </Button>
