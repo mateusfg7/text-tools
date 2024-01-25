@@ -146,7 +146,7 @@ export default function Page() {
           onChange={handleInputText}
           className="min-h-36 text-lg"
         />
-        <div className="flex justify-between gap-1 flex-wrap">
+        <div className="flex justify-center gap-2 flex-wrap">
           <CaseTransformButton
             onClick={() => caseTransform.sentence()}
             title="Sentence case"
