@@ -70,7 +70,6 @@ export function Navbar({ isOnDrawer = false }: Props) {
 
         <NavbarItem
           isOnDrawer={isOnDrawer}
-          disabled
           Icon={Fingerprint}
           title="Hash functions"
           path="/cryptography/hash"
