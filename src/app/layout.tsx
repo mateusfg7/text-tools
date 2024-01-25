@@ -35,7 +35,9 @@ export default function RootLayout({
             <Header />
             <div className="flex-1 flex gap-20">
               <div className="hidden md:block">
-                <Navbar />
+                <div className="sticky top-2">
+                  <Navbar />
+                </div>
               </div>
               <div className="flex-1">{children}</div>
             </div>
