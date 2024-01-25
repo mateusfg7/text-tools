@@ -51,7 +51,6 @@ export function Navbar({ isOnDrawer = false }: Props) {
 
         <NavbarItem
           isOnDrawer={isOnDrawer}
-          disabled
           Icon={BarChart3}
           title="Statistics"
           path="/text/statistics"
