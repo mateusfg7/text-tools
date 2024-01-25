@@ -14,6 +14,7 @@ import { toast } from 'sonner'
 import useCopy from 'use-copy'
 import { Button } from '~/shared/components/button'
 import { Textarea } from '~/shared/components/textarea'
+import { getSentences } from '~/shared/lib/get-sentences'
 
 const CaseTransformButton = ({
   title,
@@ -85,10 +86,7 @@ export default function Page() {
     upper: () => setDisplayText((curr) => curr.toUpperCase()),
     lower: () => setDisplayText((curr) => curr.toLowerCase()),
     sentence: () => {
-      // https://stackoverflow.com/a/72280712
-      const sentencesArray = displayText.match(
-        /(?=[^])(?:\P{Sentence_Terminal}|\p{Sentence_Terminal}(?!['"`\p{Close_Punctuation}\p{Final_Punctuation}\s]))*(?:\p{Sentence_Terminal}+['"`\p{Close_Punctuation}\p{Final_Punctuation}]*|$)/guy,
-      )
+      const sentencesArray = getSentences(displayText)
       if (!sentencesArray) return
 
       const charSplitSentences = sentencesArray.map((sentence) =>
