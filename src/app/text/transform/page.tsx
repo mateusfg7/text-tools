@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import {
   ArrowUpZA,
@@ -8,77 +8,77 @@ import {
   Eraser,
   LucideIcon,
   RotateCcw,
-} from "lucide-react";
-import { ChangeEvent, useState } from "react";
-import { toast } from "sonner";
-import useCopy from "use-copy";
-import { Button } from "~/shared/components/button";
-import { Textarea } from "~/shared/components/textarea";
+} from 'lucide-react'
+import { ChangeEvent, useState } from 'react'
+import { toast } from 'sonner'
+import useCopy from 'use-copy'
+import { Button } from '~/shared/components/button'
+import { Textarea } from '~/shared/components/textarea'
 
 const CaseTransformButton = ({
   title,
   onClick,
 }: {
-  title: string;
-  disabled?: boolean;
-  onClick: () => void;
+  title: string
+  disabled?: boolean
+  onClick: () => void
 }) => (
   <Button onClick={onClick} size="sm" variant="outline">
     {title}
   </Button>
-);
+)
 
 const ActionButton = ({
   title,
   Icon,
   onClick,
 }: {
-  title: string;
-  onClick: () => void;
-  disabled?: boolean;
-  Icon: LucideIcon;
+  title: string
+  onClick: () => void
+  disabled?: boolean
+  Icon: LucideIcon
 }) => (
   <Button onClick={onClick} className="space-x-2">
     <Icon size="1em" />
     <span>{title}</span>
   </Button>
-);
+)
 
-const isUpper = (char: string) => char === char.toUpperCase();
+const isUpper = (char: string) => char === char.toUpperCase()
 
 export default function Page() {
-  const [displayText, setDisplayText] = useState("");
-  const [backupText, setBackupText] = useState("");
+  const [displayText, setDisplayText] = useState('')
+  const [backupText, setBackupText] = useState('')
 
-  const [copied, copy, setCopied] = useCopy(displayText);
+  const [copied, copy, setCopied] = useCopy(displayText)
 
   function handleCopyText() {
-    copy();
+    copy()
 
-    toast.success("Text copied to the clipboard!");
+    toast.success('Text copied to the clipboard!')
     setTimeout(() => {
-      setCopied(false);
-    }, 2000);
+      setCopied(false)
+    }, 2000)
   }
 
   function handleDownload() {
-    const link = document.createElement("a");
-    const file = new Blob([displayText], { type: "text/plain" });
+    const link = document.createElement('a')
+    const file = new Blob([displayText], { type: 'text/plain' })
 
-    link.href = URL.createObjectURL(file);
-    link.download = "transformed_mateusf-com.txt";
+    link.href = URL.createObjectURL(file)
+    link.download = 'transformed_mateusf-com.txt'
 
-    link.click();
-    URL.revokeObjectURL(link.href);
+    link.click()
+    URL.revokeObjectURL(link.href)
   }
 
   function handleInputText(e: ChangeEvent<HTMLTextAreaElement>) {
-    setBackupText(e.target.value);
-    setDisplayText(e.target.value);
+    setBackupText(e.target.value)
+    setDisplayText(e.target.value)
   }
 
   function reverseText() {
-    setDisplayText((curr) => curr.split("").reverse().join(""));
+    setDisplayText((curr) => curr.split('').reverse().join(''))
   }
 
   const caseTransform = {
@@ -87,56 +87,56 @@ export default function Page() {
     sentence: () => {
       // https://stackoverflow.com/a/72280712
       const sentencesArray = displayText.match(
-        /(?=[^])(?:\P{Sentence_Terminal}|\p{Sentence_Terminal}(?!['"`\p{Close_Punctuation}\p{Final_Punctuation}\s]))*(?:\p{Sentence_Terminal}+['"`\p{Close_Punctuation}\p{Final_Punctuation}]*|$)/guy
-      );
-      if (!sentencesArray) return;
+        /(?=[^])(?:\P{Sentence_Terminal}|\p{Sentence_Terminal}(?!['"`\p{Close_Punctuation}\p{Final_Punctuation}\s]))*(?:\p{Sentence_Terminal}+['"`\p{Close_Punctuation}\p{Final_Punctuation}]*|$)/guy,
+      )
+      if (!sentencesArray) return
 
       const charSplitSentences = sentencesArray.map((sentence) =>
-        sentence.trim().split("")
-      );
+        sentence.trim().split(''),
+      )
 
       const transformedChars = charSplitSentences.map((sentenceChars) =>
         sentenceChars
           .map((char, i) => (i === 0 ? char.toUpperCase() : char.toLowerCase()))
-          .join("")
-      );
-      setDisplayText(transformedChars.join(" "));
+          .join(''),
+      )
+      setDisplayText(transformedChars.join(' '))
     },
     inverse: () => {
-      const splitChar = displayText.split("");
+      const splitChar = displayText.split('')
       const inverted = splitChar.map((char) =>
-        isUpper(char) ? char.toLowerCase() : char.toUpperCase()
-      );
+        isUpper(char) ? char.toLowerCase() : char.toUpperCase(),
+      )
 
-      setDisplayText(inverted.join(""));
+      setDisplayText(inverted.join(''))
     },
     alternate: () => {
-      const splitChar = displayText.split("");
+      const splitChar = displayText.split('')
       const alternated = splitChar.map((char, i) =>
-        i % 2 === 0 ? char.toUpperCase() : char.toLowerCase()
-      );
-      setDisplayText(alternated.join(""));
+        i % 2 === 0 ? char.toUpperCase() : char.toLowerCase(),
+      )
+      setDisplayText(alternated.join(''))
     },
     snake: () => {
       // https://stackoverflow.com/a/4328546
       const normalizedText = displayText
-        .replace(/[^\w\s\']|_/g, "")
-        .replace(/\s+/g, " ");
-      setDisplayText(normalizedText.toLowerCase().replaceAll(" ", "_"));
+        .replace(/[^\w\s\']|_/g, '')
+        .replace(/\s+/g, ' ')
+      setDisplayText(normalizedText.toLowerCase().replaceAll(' ', '_'))
     },
     capitalize: () => {
       const listOfSplitChars = displayText
-        .split(" ")
-        .map((word) => word.split(""));
+        .split(' ')
+        .map((word) => word.split(''))
       const capitalizedWords = listOfSplitChars.map((charList) =>
         charList
           .map((char, i) => (i === 0 ? char.toUpperCase() : char.toLowerCase()))
-          .join("")
-      );
+          .join(''),
+      )
 
-      setDisplayText(capitalizedWords.join(" "));
+      setDisplayText(capitalizedWords.join(' '))
     },
-  };
+  }
 
   return (
     <div className="space-y-10">
@@ -179,7 +179,7 @@ export default function Page() {
       </div>
       <div className="flex flex-wrap gap-3 justify-center">
         <ActionButton
-          onClick={() => setDisplayText("")}
+          onClick={() => setDisplayText('')}
           Icon={Eraser}
           title="Clear"
         />
@@ -201,5 +201,5 @@ export default function Page() {
         />
       </div>
     </div>
-  );
+  )
 }

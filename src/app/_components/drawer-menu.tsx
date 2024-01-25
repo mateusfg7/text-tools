@@ -1,11 +1,11 @@
-import { Menu } from "lucide-react";
-import { Button } from "~/shared/components/button";
+import { Menu } from 'lucide-react'
+import { Button } from '~/shared/components/button'
 import {
   Drawer,
   DrawerContent,
   DrawerTrigger,
-} from "~/shared/components/drawer";
-import { Navbar } from "./navbar";
+} from '~/shared/components/drawer'
+import { Navbar } from './navbar'
 
 export function DrawerMenu() {
   return (
@@ -19,5 +19,5 @@ export function DrawerMenu() {
         <Navbar isOnDrawer />
       </DrawerContent>
     </Drawer>
-  );
+  )
 }

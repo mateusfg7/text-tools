@@ -1,6 +1,6 @@
-import { FileText } from "lucide-react";
-import { ThemeToggle } from "./theme-toggle";
-import { DrawerMenu } from "./drawer-menu";
+import { FileText } from 'lucide-react'
+import { ThemeToggle } from './theme-toggle'
+import { DrawerMenu } from './drawer-menu'
 
 export const Header = () => (
   <header className="w-full flex items-center justify-between p-2 bg-primary-foreground rounded-lg">
@@ -13,4 +13,4 @@ export const Header = () => (
     </h1>
     <ThemeToggle />
   </header>
-);
+)

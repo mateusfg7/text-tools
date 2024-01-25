@@ -1,9 +1,9 @@
-import { AlertTriangle, LucideIcon } from "lucide-react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { ReactNode } from "react";
-import { toast } from "sonner";
-import { DrawerClose } from "~/shared/components/drawer";
+import { AlertTriangle, LucideIcon } from 'lucide-react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { ReactNode } from 'react'
+import { toast } from 'sonner'
+import { DrawerClose } from '~/shared/components/drawer'
 
 export const NavbarItem = ({
   title,
@@ -12,15 +12,15 @@ export const NavbarItem = ({
   disabled = false,
   isOnDrawer = false,
 }: {
-  title: string;
-  path: string;
-  Icon: LucideIcon;
-  disabled?: boolean;
-  isOnDrawer?: boolean;
+  title: string
+  path: string
+  Icon: LucideIcon
+  disabled?: boolean
+  isOnDrawer?: boolean
 }) => {
-  const pathname = usePathname();
+  const pathname = usePathname()
 
-  const selected = pathname === path;
+  const selected = pathname === path
 
   const alertMessage = () =>
     toast.warning(`Under construction`, {
@@ -31,10 +31,10 @@ export const NavbarItem = ({
         />
       ),
       description: `${title} page has not been developed yet.`,
-    });
+    })
 
   const DrawerCloserWrapper = ({ children }: { children: ReactNode }) =>
-    isOnDrawer ? <DrawerClose asChild>{children}</DrawerClose> : children;
+    isOnDrawer ? <DrawerClose asChild>{children}</DrawerClose> : children
 
   if (disabled) {
     return (
@@ -65,7 +65,7 @@ export const NavbarItem = ({
           </span>
         </button>
       </DrawerCloserWrapper>
-    );
+    )
   }
 
   return (
@@ -92,5 +92,5 @@ export const NavbarItem = ({
         </span>
       </Link>
     </DrawerCloserWrapper>
-  );
-};
+  )
+}
