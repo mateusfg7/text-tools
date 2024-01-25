@@ -33,7 +33,7 @@ export default function RootLayout({
           <Toaster />
           <div className="flex flex-col gap-10">
             <Header />
-            <div className="flex-1 flex gap-20">
+            <div className="flex-1 gap-20 md:flex">
               <div className="hidden md:block">
                 <div className="sticky top-2">
                   <Navbar />
