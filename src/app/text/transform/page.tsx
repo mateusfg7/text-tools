@@ -14,6 +14,7 @@ import { toast } from 'sonner'
 import useCopy from 'use-copy'
 import { Button } from '~/shared/components/button'
 import { Textarea } from '~/shared/components/textarea'
+import { downloadText } from '~/shared/lib/download-text'
 import { getSentences } from '~/shared/lib/get-sentences'
 
 const CaseTransformButton = ({
@@ -60,17 +61,6 @@ export default function Page() {
     setTimeout(() => {
       setCopied(false)
     }, 2000)
-  }
-
-  function handleDownload() {
-    const link = document.createElement('a')
-    const file = new Blob([displayText], { type: 'text/plain' })
-
-    link.href = URL.createObjectURL(file)
-    link.download = 'transformed_mateusf-com.txt'
-
-    link.click()
-    URL.revokeObjectURL(link.href)
   }
 
   function handleInputText(e: ChangeEvent<HTMLTextAreaElement>) {
@@ -193,7 +183,7 @@ export default function Page() {
           title="Copy"
         />
         <ActionButton
-          onClick={handleDownload}
+          onClick={() => downloadText(displayText, 'transformed')}
           Icon={Download}
           title="Download"
         />
