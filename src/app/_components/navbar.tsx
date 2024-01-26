@@ -62,7 +62,6 @@ export function Navbar({ isOnDrawer = false }: Props) {
       <Section title="Cryptography">
         <NavbarItem
           isOnDrawer={isOnDrawer}
-          disabled
           Icon={AsteriskSquare}
           title="Ciphers"
           path="/cryptography/ciphers"
