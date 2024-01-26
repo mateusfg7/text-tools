@@ -22,6 +22,7 @@ _For v1.0_
 - Generate Hashes (MD5, SHA1, SHA256...)
 - Converter
     - `(HEX|BIN|DEC) -> (HEX|BIN|DEC)`
+    - Base64
     - `(JSON|CSV) -> (JSON|CSV)`
     - URl Encoder/Decoder
 - Ciphers
@@ -71,6 +72,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## More examples of transform
 
-Case | Original | Transformed
----|---|---
+Case     | Original                                                             | Transformed
+---------|----------------------------------------------------------------------|---------------------------------------------------------------------
 Sentence | "i Like TURTLES. dO You? awesome! hahaha. lol!!! hat's Going on????" | "I like turtles. Do you? Awesome! Hahaha. Lol!!! Hat's going on????"
