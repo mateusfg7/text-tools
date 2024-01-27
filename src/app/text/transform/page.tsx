@@ -1,24 +1,23 @@
 'use client'
 
 import {
-  ArrowUpZA,
   Check,
   Copy,
   Download,
   Eraser,
   LucideIcon,
   RefreshCcw,
-  RotateCcw,
-  Undo,
   Undo2,
 } from 'lucide-react'
 import { ChangeEvent, useState } from 'react'
 import { toast } from 'sonner'
 import useCopy from 'use-copy'
-import { Button } from '~/shared/components/button'
-import { Textarea } from '~/shared/components/textarea'
+
 import { downloadText } from '~/shared/lib/download-text'
 import { getSentences } from '~/shared/lib/get-sentences'
+
+import { Button } from '~/shared/components/button'
+import { Textarea } from '~/shared/components/textarea'
 
 const CaseTransformButton = ({
   title,
