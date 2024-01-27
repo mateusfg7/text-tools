@@ -42,7 +42,7 @@ export async function POST(request: Request) {
     SHA224: SHA224(data).toString(),
     SHA256: SHA256(data).toString(),
     SHA384: SHA384(data).toString(),
-    SHA512: SHA512(data).toString(),
+    SHA512: SHA512(data).toString()
   }
 
   return new Response(JSON.stringify(hashes))

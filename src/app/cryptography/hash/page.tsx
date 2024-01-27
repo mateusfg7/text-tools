@@ -79,15 +79,15 @@ export default function Page() {
 
     await fetch('/api/hash', {
       body: JSON.stringify({
-        data: text,
+        data: text
       }),
       headers: {
         Accept: 'application/json, text/plain, */*',
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      method: 'POST',
+      method: 'POST'
     })
-      .then((res) => res.json())
+      .then(res => res.json())
       .then((res: HashApiResponse) => {
         console.log(res)
         setHashes(res)

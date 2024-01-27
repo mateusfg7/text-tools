@@ -15,7 +15,7 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue,
+  SelectValue
 } from '~/shared/components/select'
 
 import { Divisor, Method, letterToNumber } from './_lib/letter-to-number'
@@ -24,7 +24,7 @@ const ActionButton = ({
   title,
   Icon,
   onClick,
-  disabled,
+  disabled
 }: {
   title: string
   onClick: () => void
@@ -69,7 +69,7 @@ export default function Page() {
           placeholder="Plain text..."
           className="text-lg min-h-28"
           value={plainText}
-          onChange={(e) => setPlainText(e.target.value)}
+          onChange={e => setPlainText(e.target.value)}
         />
       </div>
       <div className="space-y-3">
@@ -85,7 +85,7 @@ export default function Page() {
         <div className="flex items-center gap-1 border border-border rounded-md">
           <span className="px-3">Divider</span>
           <Select
-            onValueChange={(value) => setDivisor(value as Divisor)}
+            onValueChange={value => setDivisor(value as Divisor)}
             defaultValue="space"
           >
             <SelectTrigger className="w-fit space-x-3 text-base border-y-0 border-r-0">
@@ -98,7 +98,7 @@ export default function Page() {
           </Select>
         </div>
         <Select
-          onValueChange={(value) => setMethod(value as Method)}
+          onValueChange={value => setMethod(value as Method)}
           defaultValue="Encrypt"
         >
           <SelectTrigger className="w-fit space-x-3">

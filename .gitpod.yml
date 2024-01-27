@@ -38,7 +38,6 @@ vscode:
     - csstools.postcss # PostCSS Language Support
     - bradlc.vscode-tailwindcss # Tailwind CSS IntelliSense
 
-
 # tasks:
 #   - name: Install Packages
 #     command: pnpm install

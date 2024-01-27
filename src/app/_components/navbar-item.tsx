@@ -10,7 +10,7 @@ export const NavbarItem = ({
   path,
   Icon,
   disabled = false,
-  isOnDrawer = false,
+  isOnDrawer = false
 }: {
   title: string
   path: string
@@ -30,7 +30,7 @@ export const NavbarItem = ({
           className="text-base text-slate-950 dark:text-slate-100 fill-slate-950/20 dark:fill-slate-100/20"
         />
       ),
-      description: `${title} page has not been developed yet.`,
+      description: `${title} page has not been developed yet.`
     })
 
   const DrawerCloserWrapper = ({ children }: { children: ReactNode }) =>

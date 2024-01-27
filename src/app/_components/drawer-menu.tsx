@@ -3,7 +3,7 @@ import { Button } from '~/shared/components/button'
 import {
   Drawer,
   DrawerContent,
-  DrawerTrigger,
+  DrawerTrigger
 } from '~/shared/components/drawer'
 import { Navbar } from './navbar'
 

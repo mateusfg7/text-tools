@@ -13,7 +13,7 @@ const getDivisor = (d: Divisor) => {
 const getKey = () => {
   const specialChars = '!?"\'. []{}<>\\|'.split('')
   const lowerChars = 'aâãáàbcçdeêẽéèfghiîĩíìjklmnoôõóòpqrstuûũúùvwxyz'.split('')
-  const upperChars = lowerChars.map((char) => char.toUpperCase())
+  const upperChars = lowerChars.map(char => char.toUpperCase())
 
   return [...lowerChars, ...upperChars, ...specialChars]
 }
@@ -23,13 +23,13 @@ function encrypt(text: string, divisor: string) {
 
   return text
     .split('\n')
-    .map((lines) =>
+    .map(lines =>
       lines
         .split('')
-        .map((char) =>
-          !key.includes(char) ? char : padZero(key.indexOf(char) + 1),
+        .map(char =>
+          !key.includes(char) ? char : padZero(key.indexOf(char) + 1)
         )
-        .join(divisor),
+        .join(divisor)
     )
     .join('\n')
 }
@@ -39,11 +39,11 @@ function decrypt(text: string, divisor: string) {
 
   return text
     .split('\n')
-    .map((lines) =>
+    .map(lines =>
       lines
         .split(divisor)
-        .map((nKey) => (Number(nKey) ? key[Number(nKey) - 1] : nKey))
-        .join(''),
+        .map(nKey => (Number(nKey) ? key[Number(nKey) - 1] : nKey))
+        .join('')
     )
     .join('\n')
 }
@@ -52,7 +52,7 @@ export type Method = 'Decrypt' | 'Encrypt'
 export function letterToNumber(
   text: string,
   divisor: Divisor = 'space',
-  method: Method = 'Encrypt',
+  method: Method = 'Encrypt'
 ) {
   const charDivisor = getDivisor(divisor)
 

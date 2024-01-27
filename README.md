@@ -1,39 +1,42 @@
 # Text Tools
+
 **refs**:
+
 - _https://convertcase.net/_
 - _browserling.com/tools/all-hashes_
 
 ## Planned Features
+
 _For v1.0_
+
 - Text Transform
-    - Sentence Case `mateus Felipe gonçalves -> Mateus felipe gonçalves`
-    - Lowercase `Mateus Felipe -> mateus felipe`
-    - Uppercase `Mateus Felipe -> MATEUS FELIPE`
-    - Snake Case `MaTeus FeliPe -> mateus felipe`
-    - Capitalized Case `mateUS feLipe -> Mateus Felipe`
-    - Alternating Case `Mateus Felipe -> mAtEuS fElIpE`
-    - Inverse Case `MatEus FeLiPe -> mATeUS fElIpE`
-    - Reverse `Mateus Felipe -> epileF suetaM`
-    - Text Statistics
-        - Character Count
-        - Word Count
-        - Sentence Count
-        - Line Count
+  - Sentence Case `mateus Felipe gonçalves -> Mateus felipe gonçalves`
+  - Lowercase `Mateus Felipe -> mateus felipe`
+  - Uppercase `Mateus Felipe -> MATEUS FELIPE`
+  - Snake Case `MaTeus FeliPe -> mateus felipe`
+  - Capitalized Case `mateUS feLipe -> Mateus Felipe`
+  - Alternating Case `Mateus Felipe -> mAtEuS fElIpE`
+  - Inverse Case `MatEus FeLiPe -> mATeUS fElIpE`
+  - Reverse `Mateus Felipe -> epileF suetaM`
+  - Text Statistics
+    - Character Count
+    - Word Count
+    - Sentence Count
+    - Line Count
 - Generate Hashes (MD5, SHA1, SHA256...)
 - Converter
-    - `(HEX|BIN|DEC) -> (HEX|BIN|DEC)`
-    - Base64
-    - `(JSON|CSV) -> (JSON|CSV)`
-    - URl Encoder/Decoder
+  - `(HEX|BIN|DEC) -> (HEX|BIN|DEC)`
+  - Base64
+  - `(JSON|CSV) -> (JSON|CSV)`
+  - URl Encoder/Decoder
 - Ciphers
-    - Caesar
-    - ROT13
-    - Rail Fence
-    - Morse
+  - Caesar
+  - ROT13
+  - Rail Fence
+  - Morse
 - Password Generator
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 
 ## Getting Started
 
@@ -72,6 +75,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## More examples of transform
 
-Case     | Original                                                             | Transformed
----------|----------------------------------------------------------------------|---------------------------------------------------------------------
-Sentence | "i Like TURTLES. dO You? awesome! hahaha. lol!!! hat's Going on????" | "I like turtles. Do you? Awesome! Hahaha. Lol!!! Hat's going on????"
+| Case     | Original                                                             | Transformed                                                          |
+| -------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| Sentence | "i Like TURTLES. dO You? awesome! hahaha. lol!!! hat's Going on????" | "I like turtles. Do you? Awesome! Hahaha. Lol!!! Hat's going on????" |

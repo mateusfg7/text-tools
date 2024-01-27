@@ -15,7 +15,7 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue,
+  SelectValue
 } from '~/shared/components/select'
 import { Input } from '~/shared/components/input'
 
@@ -25,7 +25,7 @@ const ActionButton = ({
   title,
   Icon,
   disabled = false,
-  onClick,
+  onClick
 }: {
   title: string
   onClick: () => void
@@ -53,7 +53,7 @@ export default function Page() {
   const cipheredText = caesarCipher(
     plainText,
     caesarShift,
-    caesarMethod === 'Decrypt',
+    caesarMethod === 'Decrypt'
   )
 
   const [copied, copy, setCopied] = useCopy(cipheredText)
@@ -76,7 +76,7 @@ export default function Page() {
           placeholder="Plain text..."
           className="text-lg min-h-28"
           value={plainText}
-          onChange={(e) => setPlainText(e.target.value)}
+          onChange={e => setPlainText(e.target.value)}
         />
       </div>
       <div className="space-y-3">
@@ -98,11 +98,11 @@ export default function Page() {
             id="shift"
             value={caesarShift}
             className="w-20 space-x-2 border-y-0 border-r-0"
-            onChange={(e) => setCaesarShift(Number(e.target.value))}
+            onChange={e => setCaesarShift(Number(e.target.value))}
           />
         </div>
         <Select
-          onValueChange={(value) => setCaesarMethod(value as CaesarMethod)}
+          onValueChange={value => setCaesarMethod(value as CaesarMethod)}
           defaultValue="Encrypt"
         >
           <SelectTrigger className="w-fit space-x-3">

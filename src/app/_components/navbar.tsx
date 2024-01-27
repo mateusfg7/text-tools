@@ -8,7 +8,7 @@ import {
   Fingerprint,
   KeyRound,
   Text,
-  Wand2,
+  Wand2
 } from 'lucide-react'
 
 import { Separator } from '~/shared/components/separator'
@@ -16,7 +16,7 @@ import { NavbarItem } from './navbar-item'
 
 const Section = ({
   title,
-  children,
+  children
 }: {
   title: string
   children: ReactNode

@@ -2,7 +2,7 @@
 export function caesarCipher(
   str: string,
   shift: number,
-  decrypt = false,
+  decrypt = false
 ): string {
   const s = decrypt ? (26 - shift) % 26 : shift
   const n = s > 0 ? s : 26 + (s % 26)

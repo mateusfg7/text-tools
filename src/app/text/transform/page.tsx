@@ -7,7 +7,7 @@ import {
   Eraser,
   LucideIcon,
   RefreshCcw,
-  Undo2,
+  Undo2
 } from 'lucide-react'
 import { ChangeEvent, useState } from 'react'
 import { toast } from 'sonner'
@@ -22,7 +22,7 @@ import { Textarea } from '~/shared/components/textarea'
 const CaseTransformButton = ({
   title,
   disabled = false,
-  onClick,
+  onClick
 }: {
   title: string
   disabled?: boolean
@@ -37,7 +37,7 @@ const ActionButton = ({
   title,
   Icon,
   disabled = false,
-  onClick,
+  onClick
 }: {
   title: string
   onClick: () => void
@@ -73,31 +73,31 @@ export default function Page() {
   }
 
   function reverseText() {
-    setDisplayText((curr) => curr.split('').reverse().join(''))
+    setDisplayText(curr => curr.split('').reverse().join(''))
   }
 
   const caseTransform = {
-    upper: () => setDisplayText((curr) => curr.toUpperCase()),
-    lower: () => setDisplayText((curr) => curr.toLowerCase()),
+    upper: () => setDisplayText(curr => curr.toUpperCase()),
+    lower: () => setDisplayText(curr => curr.toLowerCase()),
     sentence: () => {
       const sentencesArray = getSentences(displayText)
       if (!sentencesArray) return
 
-      const charSplitSentences = sentencesArray.map((sentence) =>
-        sentence.trim().split(''),
+      const charSplitSentences = sentencesArray.map(sentence =>
+        sentence.trim().split('')
       )
 
-      const transformedChars = charSplitSentences.map((sentenceChars) =>
+      const transformedChars = charSplitSentences.map(sentenceChars =>
         sentenceChars
           .map((char, i) => (i === 0 ? char.toUpperCase() : char.toLowerCase()))
-          .join(''),
+          .join('')
       )
       setDisplayText(transformedChars.join(' '))
     },
     inverse: () => {
       const splitChar = displayText.split('')
-      const inverted = splitChar.map((char) =>
-        isUpper(char) ? char.toLowerCase() : char.toUpperCase(),
+      const inverted = splitChar.map(char =>
+        isUpper(char) ? char.toLowerCase() : char.toUpperCase()
       )
 
       setDisplayText(inverted.join(''))
@@ -105,7 +105,7 @@ export default function Page() {
     alternate: () => {
       const splitChar = displayText.split('')
       const alternated = splitChar.map((char, i) =>
-        i % 2 === 0 ? char.toUpperCase() : char.toLowerCase(),
+        i % 2 === 0 ? char.toUpperCase() : char.toLowerCase()
       )
       setDisplayText(alternated.join(''))
     },
@@ -119,15 +119,15 @@ export default function Page() {
     capitalize: () => {
       const listOfSplitChars = displayText
         .split(' ')
-        .map((word) => word.split(''))
-      const capitalizedWords = listOfSplitChars.map((charList) =>
+        .map(word => word.split(''))
+      const capitalizedWords = listOfSplitChars.map(charList =>
         charList
           .map((char, i) => (i === 0 ? char.toUpperCase() : char.toLowerCase()))
-          .join(''),
+          .join('')
       )
 
       setDisplayText(capitalizedWords.join(' '))
-    },
+    }
   }
 
   return (

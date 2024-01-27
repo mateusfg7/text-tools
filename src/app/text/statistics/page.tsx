@@ -26,7 +26,7 @@ const ActionButton = ({
   title,
   Icon,
   disabled = false,
-  onClick,
+  onClick
 }: {
   title: string
   onClick: () => void
@@ -46,9 +46,9 @@ export default function Page() {
     setText(e.target.value)
   }
 
-  const wordCount = text.split(' ').filter((word) => word.length > 0).length
+  const wordCount = text.split(' ').filter(word => word.length > 0).length
   const charCount = text.replaceAll(' ', '').split('').length
-  const lineCount = text.split('\n').filter((word) => word.length > 0).length
+  const lineCount = text.split('\n').filter(word => word.length > 0).length
   const sentencesCount = getSentences(text)?.length ?? 0
 
   const visualData = `Char Count:       ${charCount}\nWord Count:       ${wordCount}\nSentences Count:  ${sentencesCount}\nLine Count:       ${lineCount}`
