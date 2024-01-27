@@ -24,6 +24,7 @@ import { caesarCipher } from './_lib/caesar-cipher'
 const ActionButton = ({
   title,
   Icon,
+  disabled = false,
   onClick,
 }: {
   title: string
@@ -31,7 +32,12 @@ const ActionButton = ({
   disabled?: boolean
   Icon: LucideIcon
 }) => (
-  <Button onClick={onClick} className="space-x-2" variant="secondary">
+  <Button
+    onClick={onClick}
+    className="space-x-2"
+    variant="secondary"
+    disabled={disabled}
+  >
     <Icon size="1em" />
     <span>{title}</span>
   </Button>
@@ -109,11 +115,13 @@ export default function Page() {
         </Select>
         <ActionButton
           onClick={handleCopyText}
+          disabled={plainText.length < 1}
           Icon={copied ? Check : Copy}
           title="Copy"
         />
         <ActionButton
           onClick={() => downloadText(cipheredText, 'caesar-ciphered-text')}
+          disabled={plainText.length < 1}
           Icon={Download}
           title="Download"
         />
