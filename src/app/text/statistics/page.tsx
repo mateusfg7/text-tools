@@ -1,13 +1,15 @@
 'use client'
 
 import { ChangeEvent, useState } from 'react'
-
-import { getSentences } from '~/shared/lib/get-sentences'
-import { Textarea } from '~/shared/components/textarea'
+import { Check, Copy, Download, LucideIcon } from 'lucide-react'
 import useCopy from 'use-copy'
 import { toast } from 'sonner'
+
+import { getSentences } from '~/shared/lib/get-sentences'
+import { downloadText } from '~/shared/lib/download-text'
+
+import { Textarea } from '~/shared/components/textarea'
 import { Button } from '~/shared/components/button'
-import { Check, Copy, Download, LucideIcon } from 'lucide-react'
 
 type CardProps = {
   title: string
@@ -23,6 +25,7 @@ const Card = ({ title, value }: CardProps) => (
 const ActionButton = ({
   title,
   Icon,
+  disabled = false,
   onClick,
 }: {
   title: string
@@ -30,7 +33,7 @@ const ActionButton = ({
   disabled?: boolean
   Icon: LucideIcon
 }) => (
-  <Button onClick={onClick} className="space-x-2">
+  <Button onClick={onClick} className="space-x-2" disabled={disabled}>
     <Icon size="1em" />
     <span>{title}</span>
   </Button>
@@ -61,17 +64,6 @@ export default function Page() {
     }, 2000)
   }
 
-  function handleDownload() {
-    const link = document.createElement('a')
-    const file = new Blob([visualData], { type: 'text/plain' })
-
-    link.href = URL.createObjectURL(file)
-    link.download = 'statistics_mateusf-com.txt'
-
-    link.click()
-    URL.revokeObjectURL(link.href)
-  }
-
   return (
     <div className="space-y-12">
       <div className="space-y-5">
@@ -90,11 +82,13 @@ export default function Page() {
       <div className="flex flex-wrap justify-center gap-3">
         <ActionButton
           onClick={handleCopyText}
+          disabled={text.length < 1}
           Icon={copied ? Check : Copy}
           title="Copy"
         />
         <ActionButton
-          onClick={handleDownload}
+          onClick={() => downloadText(text, 'statistics')}
+          disabled={text.length < 1}
           Icon={Download}
           title="Download"
         />
