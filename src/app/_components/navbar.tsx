@@ -7,6 +7,7 @@ import {
   BarChart3,
   Fingerprint,
   KeyRound,
+  MoreHorizontal,
   Text,
   Wand2
 } from 'lucide-react'
@@ -71,6 +72,12 @@ export function Navbar({ isOnDrawer = false }: Props) {
           Icon={AsteriskSquare}
           title="Letter to number"
           path="/cryptography/letter-number"
+        />
+        <NavbarItem
+          isOnDrawer={isOnDrawer}
+          Icon={MoreHorizontal}
+          title="Morse Code"
+          path="/cryptography/morse"
         />
         <NavbarItem
           isOnDrawer={isOnDrawer}
