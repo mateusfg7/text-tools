@@ -1,14 +1,6 @@
 'use client'
 
-import {
-  Check,
-  Copy,
-  Download,
-  Eraser,
-  LucideIcon,
-  RefreshCcw,
-  Undo2
-} from 'lucide-react'
+import { Check, Copy, Download, Eraser, LucideIcon, Undo2 } from 'lucide-react'
 import { ChangeEvent, useState } from 'react'
 import { toast } from 'sonner'
 import useCopy from 'use-copy'
@@ -19,7 +11,7 @@ import { getSentences } from '~/shared/lib/get-sentences'
 import { Button } from '~/shared/components/button'
 import { Textarea } from '~/shared/components/textarea'
 
-const CaseTransformButton = ({
+const TransformButton = ({
   title,
   disabled = false,
   onClick
@@ -140,40 +132,45 @@ export default function Page() {
           className="min-h-36 text-lg"
         />
         <div className="flex justify-center gap-2 flex-wrap">
-          <CaseTransformButton
+          <TransformButton
             onClick={() => caseTransform.sentence()}
             disabled={displayText.length < 1}
             title="Sentence case"
           />
-          <CaseTransformButton
+          <TransformButton
             onClick={() => caseTransform.lower()}
             disabled={displayText.length < 1}
             title="lower case"
           />
-          <CaseTransformButton
+          <TransformButton
             onClick={() => caseTransform.upper()}
             disabled={displayText.length < 1}
             title="UPPER CASE"
           />
-          <CaseTransformButton
+          <TransformButton
             onClick={() => caseTransform.capitalize()}
             disabled={displayText.length < 1}
             title="Capitalized Case"
           />
-          <CaseTransformButton
+          <TransformButton
             onClick={() => caseTransform.alternate()}
             disabled={displayText.length < 1}
             title="AlTeRnAtInG cAsE"
           />
-          <CaseTransformButton
+          <TransformButton
             onClick={() => caseTransform.inverse()}
             disabled={displayText.length < 1}
             title="iNvErSe CaSe"
           />
-          <CaseTransformButton
+          <TransformButton
             onClick={() => caseTransform.snake()}
             disabled={displayText.length < 1}
             title="snake_case"
+          />
+          <TransformButton
+            onClick={reverseText}
+            disabled={displayText.length < 1}
+            title="Reverse"
           />
         </div>
       </div>
@@ -189,12 +186,6 @@ export default function Page() {
           disabled={backupText.length < 1}
           Icon={Undo2}
           title="Restore"
-        />
-        <ActionButton
-          onClick={reverseText}
-          disabled={displayText.length < 1}
-          Icon={RefreshCcw}
-          title="Reverse"
         />
         <ActionButton
           onClick={handleCopyText}
