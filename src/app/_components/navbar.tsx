@@ -68,6 +68,12 @@ export function Navbar({ isOnDrawer = false }: Props) {
         />
         <NavbarItem
           isOnDrawer={isOnDrawer}
+          Icon={AsteriskSquare}
+          title="Letter to number"
+          path="/cryptography/letter-number"
+        />
+        <NavbarItem
+          isOnDrawer={isOnDrawer}
           Icon={Fingerprint}
           title="Hash functions"
           path="/cryptography/hash"
