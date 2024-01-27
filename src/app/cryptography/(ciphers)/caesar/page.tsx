@@ -1,9 +1,15 @@
 'use client'
 
 import { useState } from 'react'
+import { Check, Copy, Download, LucideIcon } from 'lucide-react'
+import useCopy from 'use-copy'
+import { toast } from 'sonner'
 
+import { downloadText } from '~/shared/lib/download-text'
+
+import { Label } from '~/shared/components/label'
 import { Textarea } from '~/shared/components/textarea'
-import { Input } from '~/shared/components/input'
+import { Button } from '~/shared/components/button'
 import {
   Select,
   SelectContent,
@@ -11,15 +17,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from '~/shared/components/select'
+import { Input } from '~/shared/components/input'
 
-import { caesarCipher } from '../_lib/caesar-cipher'
-import { CipherContainer } from './cipher-container'
-import { Label } from '~/shared/components/label'
-import { Button } from '~/shared/components/button'
-import { Check, Copy, Download, LucideIcon } from 'lucide-react'
-import useCopy from 'use-copy'
-import { toast } from 'sonner'
-import { downloadText } from '~/shared/lib/download-text'
+import { caesarCipher } from './_lib/caesar-cipher'
 
 const ActionButton = ({
   title,
@@ -38,10 +38,9 @@ const ActionButton = ({
 )
 
 type CaesarMethod = 'Decrypt' | 'Encrypt'
-type Props = {
-  plainText: string
-}
-export function CaesarCipher({ plainText }: Props) {
+
+export default function Page() {
+  const [plainText, setPlainText] = useState('')
   const [caesarShift, setCaesarShift] = useState(1)
   const [caesarMethod, setCaesarMethod] = useState<CaesarMethod>('Encrypt')
 
@@ -63,8 +62,26 @@ export function CaesarCipher({ plainText }: Props) {
   }
 
   return (
-    <CipherContainer title="Caesar Cipher" className="space-y-2">
-      <Textarea readOnly className="text-lg min-h-28" value={cipheredText} />
+    <div className="space-y-7">
+      <div className="space-y-3">
+        <Label htmlFor="plain-text">Target plain text</Label>
+        <Textarea
+          id="plain-text"
+          placeholder="Plain text..."
+          className="text-lg min-h-28"
+          value={plainText}
+          onChange={(e) => setPlainText(e.target.value)}
+        />
+      </div>
+      <div className="space-y-3">
+        <Label htmlFor="result">Result</Label>
+        <Textarea
+          readOnly
+          id="result"
+          className="text-lg min-h-28"
+          value={cipheredText}
+        />
+      </div>
       <div className="flex justify-center gap-2 flex-wrap">
         <div className="border border-border rounded-md gap-2 flex items-center">
           <Label htmlFor="shift" className="px-3">
@@ -101,6 +118,6 @@ export function CaesarCipher({ plainText }: Props) {
           title="Download"
         />
       </div>
-    </CipherContainer>
+    </div>
   )
 }
