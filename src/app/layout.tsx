@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import { Toaster } from '~/shared/components/sonner'
 
 import { Header } from './_components/header'
+import { Footer } from './_components/footer'
 import { Navbar } from './_components/navbar'
 import { ThemeProvider } from './_components/theme-provider'
 
@@ -41,6 +42,7 @@ export default function RootLayout({
               </div>
               <div className="flex-1">{children}</div>
             </div>
+            <Footer />
           </div>
         </ThemeProvider>
       </body>

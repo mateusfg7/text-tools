@@ -1,0 +1,29 @@
+import { ArrowUpRight } from 'lucide-react'
+import { ComponentProps } from 'react'
+
+type LinkProps = Omit<ComponentProps<'a'>, 'children' | 'target'> & {
+  text: string
+}
+const Link = ({ text, className, ...props }: LinkProps) => (
+  <a
+    {...props}
+    target="_blank"
+    className="inline-flex items-end text-muted-foreground cursor-pointer hover:text-accent-foreground transition-colors"
+  >
+    <span className="leading-none">{text}</span>
+    <ArrowUpRight strokeWidth={1.5} size="1em" className="text-sm" />
+  </a>
+)
+
+export function Footer() {
+  return (
+    <footer className="flex justify-center items-center flex-wrap p-6 gap-4">
+      <Link href="https://github.com/mateusfg7" text="by Mateus Felipe" />
+      <Link
+        href="https://github.com/mateusfg7/text-tools/blob/main/LICENSE"
+        text="MIT License"
+      />
+      <Link href="https://github.com/mateusfg7/text-tools" text="Source Code" />
+    </footer>
+  )
+}
