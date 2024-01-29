@@ -18,12 +18,18 @@ const Link = ({ text, className, ...props }: LinkProps) => (
 export function Footer() {
   return (
     <footer className="flex justify-center items-center flex-wrap p-6 gap-4">
-      <Link href="https://github.com/mateusfg7" text="by Mateus Felipe" />
       <Link
-        href="https://github.com/mateusfg7/text-tools/blob/main/LICENSE"
+        href="https://mateusf.com?ref=https://text.mateusf.com"
+        text="by Mateus Felipe"
+      />
+      <Link
+        href="https://github.com/mateusfg7/text-tools/blob/main/LICENSE?ref=https://text.mateusf.com"
         text="MIT License"
       />
-      <Link href="https://github.com/mateusfg7/text-tools" text="Source Code" />
+      <Link
+        href="https://github.com/mateusfg7/text-tools?ref=https://text.mateusf.com"
+        text="Source Code"
+      />
     </footer>
   )
 }
