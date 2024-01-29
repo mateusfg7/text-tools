@@ -14,7 +14,10 @@ import Script from 'next/script'
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
 
 export const metadata: Metadata = {
-  title: 'Text Tools',
+  title: {
+    default: 'Text Tools',
+    template: '%s • Text Tools'
+  },
   description: 'Text Tools'
 }
 
