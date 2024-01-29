@@ -8,6 +8,7 @@ import {
   Fingerprint,
   Heading1,
   KeyRound,
+  List,
   MoreHorizontal,
   Text,
   Wand2
@@ -42,13 +43,11 @@ export function Navbar({ isOnDrawer = false }: Props) {
           title="Transform"
           path="/text/transform"
         />
-
         <NavbarItem
           isOnDrawer={isOnDrawer}
-          disabled
-          Icon={Wand2}
-          title="Styling"
-          path="/text/styling"
+          Icon={List}
+          title="List"
+          path="/text/list"
         />
 
         <NavbarItem
@@ -56,6 +55,14 @@ export function Navbar({ isOnDrawer = false }: Props) {
           Icon={BarChart3}
           title="Statistics"
           path="/text/statistics"
+        />
+
+        <NavbarItem
+          isOnDrawer={isOnDrawer}
+          disabled
+          Icon={Wand2}
+          title="Styling"
+          path="/text/styling"
         />
       </Section>
 
