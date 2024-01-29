@@ -21,7 +21,7 @@ import { capitalizedCase } from './_lib/capitalized-case'
 
 export default function Page() {
   const [displayText, setDisplayText] = useState('')
-  const [backupText, setBackupText] = useState('')
+  const [history, setHistory] = useState<string[]>([])
 
   const [copied, copy, setCopied] = useCopy(displayText)
 
@@ -35,21 +35,49 @@ export default function Page() {
   }
 
   function handleInputText(e: ChangeEvent<HTMLTextAreaElement>) {
-    setBackupText(e.target.value)
     setDisplayText(e.target.value)
   }
 
+  function saveCurrentState() {
+    setHistory(curr => [...curr, displayText])
+  }
+  function undo() {
+    const lastIndex = history.length - 1
+
+    setDisplayText(history[lastIndex])
+    setHistory(curr => curr.slice(0, lastIndex))
+  }
+
   const caseTransform = {
-    upper: () => setDisplayText(curr => curr.toUpperCase()),
-    lower: () => setDisplayText(curr => curr.toLowerCase()),
+    upper: () => {
+      saveCurrentState()
+      setDisplayText(curr => curr.toUpperCase())
+    },
+    lower: () => {
+      saveCurrentState()
+      setDisplayText(curr => curr.toLowerCase())
+    },
     inverse: () => setDisplayText(curr => inverseCase(curr)),
     sentence: () => {
       const sentenceCaseText = sentenceCase(displayText)
-      sentenceCaseText && setDisplayText(sentenceCaseText)
+
+      if (!sentenceCaseText) return
+
+      saveCurrentState()
+      setDisplayText(sentenceCaseText)
     },
-    alternate: () => setDisplayText(curr => alternatedCase(curr)),
-    snake: () => setDisplayText(curr => snakeCase(curr)),
-    capitalize: () => setDisplayText(curr => capitalizedCase(curr))
+    alternate: () => {
+      saveCurrentState()
+      setDisplayText(curr => alternatedCase(curr))
+    },
+    snake: () => {
+      saveCurrentState()
+      setDisplayText(curr => snakeCase(curr))
+    },
+    capitalize: () => {
+      saveCurrentState()
+      setDisplayText(curr => capitalizedCase(curr))
+    }
   }
 
   return (
@@ -106,16 +134,19 @@ export default function Page() {
       </div>
       <div className="flex flex-wrap gap-3 justify-center">
         <ActionButton
-          onClick={() => setDisplayText('')}
+          onClick={() => {
+            saveCurrentState()
+            setDisplayText('')
+          }}
           disabled={displayText.length < 1}
           Icon={Eraser}
           title="Clear"
         />
         <ActionButton
-          onClick={() => setDisplayText(backupText)}
-          disabled={backupText.length < 1}
+          onClick={undo}
+          disabled={history.length < 1}
           Icon={Undo2}
-          title="Restore"
+          title="Undo"
         />
         <ActionButton
           onClick={handleCopyText}
