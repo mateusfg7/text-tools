@@ -84,6 +84,8 @@ export default function Page() {
     setIsLoading(false)
   }
 
+  const allHashForCopy = `MD5    ${hashes?.MD5}\nSHA1   ${hashes?.SHA1}\nSHA3   ${hashes?.SHA3}\nSHA224 ${hashes?.SHA224}\nSHA256 ${hashes?.SHA256}\nSHA384 ${hashes?.SHA384}\nSHA512 ${hashes?.SHA512}`
+
   return (
     <div className="space-y-12">
       <div className="space-y-5">
@@ -94,7 +96,15 @@ export default function Page() {
           className="min-h-32 text-lg"
         />
       </div>
-      <div className="flex justify-center md:justify-end">
+      <div className="flex justify-center gap-2 md:justify-end">
+        <CopyButton
+          text={allHashForCopy}
+          disabled={!hashes}
+          variant="secondary"
+          toastMessage="All hashes copied to the clipboard!"
+        >
+          <span>Copy all hashes</span>
+        </CopyButton>
         <Button
           className="space-x-2"
           onClick={generateHash}
