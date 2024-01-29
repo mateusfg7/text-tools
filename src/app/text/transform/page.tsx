@@ -1,9 +1,7 @@
 'use client'
 
-import { Check, Copy, Download, Eraser, Undo2 } from 'lucide-react'
+import { Download, Eraser, Undo2 } from 'lucide-react'
 import { ChangeEvent, useState } from 'react'
-import { toast } from 'sonner'
-import useCopy from 'use-copy'
 
 import { downloadText } from '~/shared/lib/download-text'
 
@@ -18,21 +16,11 @@ import { inverseCase } from './_lib/inverse-case'
 import { alternatedCase } from './_lib/alternated-case'
 import { snakeCase } from './_lib/snake-case'
 import { capitalizedCase } from './_lib/capitalized-case'
+import { CopyButton } from '~/shared/components/copy-button'
 
 export default function Page() {
   const [displayText, setDisplayText] = useState('')
   const [history, setHistory] = useState<string[]>([])
-
-  const [copied, copy, setCopied] = useCopy(displayText)
-
-  function handleCopyText() {
-    copy()
-
-    toast.success('Text copied to the clipboard!')
-    setTimeout(() => {
-      setCopied(false)
-    }, 2000)
-  }
 
   function handleInputText(e: ChangeEvent<HTMLTextAreaElement>) {
     setDisplayText(e.target.value)
@@ -148,11 +136,10 @@ export default function Page() {
           Icon={Undo2}
           title="Undo"
         />
-        <ActionButton
-          onClick={handleCopyText}
+        <CopyButton
+          text={displayText}
           disabled={displayText.length < 1}
-          Icon={copied ? Check : Copy}
-          title="Copy"
+          toastMessage="Text copied to the clipboard!"
         />
         <ActionButton
           onClick={() => downloadText(displayText, 'transformed')}

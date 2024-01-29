@@ -1,9 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Check, Copy, Download, LucideIcon } from 'lucide-react'
-import useCopy from 'use-copy'
-import { toast } from 'sonner'
+import { Download, LucideIcon } from 'lucide-react'
 
 import { downloadText } from '~/shared/lib/download-text'
 
@@ -17,6 +15,7 @@ import {
   SelectTrigger,
   SelectValue
 } from '~/shared/components/select'
+import { CopyButton } from '~/shared/components/copy-button'
 
 import { Method, morse } from './_lib/morse'
 
@@ -48,20 +47,7 @@ export default function Page() {
 
   const encodedText = morse(plainText, method)
 
-  const [copied, copy, setCopied] = useCopy(encodedText)
-
   const isEncoding = method === 'encode'
-
-  function handleCopyText() {
-    copy()
-
-    toast.success(
-      `${isEncoding ? 'Morse code' : 'Decoded text'} copied to the clipboard!`
-    )
-    setTimeout(() => {
-      setCopied(false)
-    }, 2000)
-  }
 
   return (
     <div className="space-y-7">
@@ -97,11 +83,11 @@ export default function Page() {
             <SelectItem value="decode">Decode</SelectItem>
           </SelectContent>
         </Select>
-        <ActionButton
-          onClick={handleCopyText}
+        <CopyButton
+          text={encodedText}
           disabled={plainText.length < 1}
-          Icon={copied ? Check : Copy}
-          title="Copy"
+          variant="secondary"
+          toastMessage={`${isEncoding ? 'Morse code' : 'Decoded text'} copied to the clipboard!`}
         />
         <ActionButton
           onClick={() =>

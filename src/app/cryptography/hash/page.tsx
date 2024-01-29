@@ -1,64 +1,51 @@
 'use client'
 
-import { Textarea } from '~/shared/components/textarea'
-import useCopy from 'use-copy'
+import { ChangeEvent, useState } from 'react'
 import { toast } from 'sonner'
-import { Check, Copy, Cpu, Loader2 } from 'lucide-react'
+import { Cpu, Loader2 } from 'lucide-react'
+
+import { HashApiResponse } from '~/app/api/hash/route'
 
 import { Button } from '~/shared/components/button'
-import { ChangeEvent, useEffect, useState } from 'react'
-import { HashApiResponse } from '~/app/api/hash/route'
+import { CopyButton } from '~/shared/components/copy-button'
+import { Textarea } from '~/shared/components/textarea'
 
 type HashRowProps = {
   title: string
   hash: string | undefined
 }
-const HashRow = ({ title, hash }: HashRowProps) => {
-  const [copied, copy, setCopied] = useCopy(hash ?? '')
-
-  function handleCopyText() {
-    copy()
-
-    toast.success(`${title} copied to the clipboard`)
-    setTimeout(() => {
-      setCopied(false)
-    }, 2000)
-  }
-
-  return (
-    <div className="border p-2 text-center md:flex items-center justify-between gap-1 border-border rounded-md relative md:flex-row flex-col space-y-5 md:space-y-0 overflow-hidden block">
-      <div className="font-bold">{title}</div>
-      <div
-        data-no-hash={!hash}
-        title={hash ?? ''}
-        className="md:absolute md:top-1/2 md:-translate-y-1/2 md:left-1/2 md:-translate-x-1/2 w-full md:w-1/2 data-[no-hash='true']:text-center text-ellipsis text-center md:text-left overflow-hidden"
-      >
-        {hash ?? '-'}
-      </div>
-      <Button
-        onClick={handleCopyText}
-        size="icon"
-        variant="outline"
-        className="hidden md:flex"
-        disabled={!hash}
-      >
-        {copied && <Check size="1em" className="text-lg" />}
-        {!copied && <Copy size="1em" className="text-lg" />}
-      </Button>
-      <Button
-        onClick={handleCopyText}
-        variant="outline"
-        size="lg"
-        className="md:hidden space-x-3"
-        disabled={!hash}
-      >
-        {copied && <Check size="1em" className="text-lg" />}
-        {!copied && <Copy size="1em" className="text-lg" />}
-        <span>Copy to clipboard</span>
-      </Button>
+const HashRow = ({ title, hash }: HashRowProps) => (
+  <div className="border p-2 text-center md:flex items-center justify-between gap-1 border-border rounded-md relative md:flex-row flex-col space-y-5 md:space-y-0 overflow-hidden block">
+    <div className="font-bold">{title}</div>
+    <div
+      data-no-hash={!hash}
+      title={hash ?? ''}
+      className="md:absolute md:top-1/2 md:-translate-y-1/2 md:left-1/2 md:-translate-x-1/2 w-full md:w-1/2 data-[no-hash='true']:text-center text-ellipsis text-center md:text-left overflow-hidden"
+    >
+      {hash ?? '-'}
     </div>
-  )
-}
+    <CopyButton
+      text={hash ?? ''}
+      size="lg"
+      variant="outline"
+      className="text-lg space-x-3 md:hidden"
+      disabled={!hash}
+      toastMessage={`${title} copied to the clipboard`}
+    >
+      <span className="text-base">Copy to clipboard</span>
+    </CopyButton>
+    <CopyButton
+      text={hash ?? ''}
+      size="icon"
+      variant="outline"
+      className="text-lg space-x-0"
+      disabled={!hash}
+      toastMessage={`${title} copied to the clipboard`}
+    >
+      <span />
+    </CopyButton>
+  </div>
+)
 
 export default function Page() {
   const [text, setText] = useState('')

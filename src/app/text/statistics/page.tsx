@@ -1,15 +1,14 @@
 'use client'
 
 import { ChangeEvent, useState } from 'react'
-import { Check, Copy, Download, LucideIcon } from 'lucide-react'
-import useCopy from 'use-copy'
-import { toast } from 'sonner'
+import { Download, LucideIcon } from 'lucide-react'
 
 import { getSentences } from '~/shared/lib/get-sentences'
 import { downloadText } from '~/shared/lib/download-text'
 
 import { Textarea } from '~/shared/components/textarea'
 import { Button } from '~/shared/components/button'
+import { CopyButton } from '~/shared/components/copy-button'
 
 type CardProps = {
   title: string
@@ -53,17 +52,6 @@ export default function Page() {
 
   const visualData = `Char Count:       ${charCount}\nWord Count:       ${wordCount}\nSentences Count:  ${sentencesCount}\nLine Count:       ${lineCount}`
 
-  const [copied, copy, setCopied] = useCopy(visualData)
-
-  function handleCopyText() {
-    copy()
-
-    toast.success('Statistics copied to the clipboard!')
-    setTimeout(() => {
-      setCopied(false)
-    }, 2000)
-  }
-
   return (
     <div className="space-y-12">
       <div className="space-y-5">
@@ -80,11 +68,10 @@ export default function Page() {
         </div>
       </div>
       <div className="flex flex-wrap justify-center gap-3">
-        <ActionButton
-          onClick={handleCopyText}
+        <CopyButton
+          text={visualData}
           disabled={text.length < 1}
-          Icon={copied ? Check : Copy}
-          title="Copy"
+          toastMessage="Statistics copied to the clipboard!"
         />
         <ActionButton
           onClick={() => downloadText(text, 'statistics')}

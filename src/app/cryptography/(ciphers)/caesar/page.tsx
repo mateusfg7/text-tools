@@ -1,9 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Check, Copy, Download, LucideIcon } from 'lucide-react'
-import useCopy from 'use-copy'
-import { toast } from 'sonner'
+import { Download, LucideIcon } from 'lucide-react'
 
 import { downloadText } from '~/shared/lib/download-text'
 
@@ -18,6 +16,7 @@ import {
   SelectValue
 } from '~/shared/components/select'
 import { Input } from '~/shared/components/input'
+import { CopyButton } from '~/shared/components/copy-button'
 
 import { caesarCipher } from './_lib/caesar-cipher'
 
@@ -55,17 +54,6 @@ export default function Page() {
     caesarShift,
     caesarMethod === 'Decrypt'
   )
-
-  const [copied, copy, setCopied] = useCopy(cipheredText)
-
-  function handleCopyText() {
-    copy()
-
-    toast.success('Ciphered text copied to the clipboard!')
-    setTimeout(() => {
-      setCopied(false)
-    }, 2000)
-  }
 
   return (
     <div className="space-y-7">
@@ -113,11 +101,11 @@ export default function Page() {
             <SelectItem value="Decrypt">Decrypt</SelectItem>
           </SelectContent>
         </Select>
-        <ActionButton
-          onClick={handleCopyText}
+        <CopyButton
+          text={cipheredText}
           disabled={plainText.length < 1}
-          Icon={copied ? Check : Copy}
-          title="Copy"
+          variant="secondary"
+          toastMessage="Ciphered text copied to the clipboard!"
         />
         <ActionButton
           onClick={() => downloadText(cipheredText, 'caesar-ciphered-text')}
