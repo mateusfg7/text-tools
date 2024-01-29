@@ -1,48 +1,23 @@
 'use client'
 
-import { Check, Copy, Download, Eraser, LucideIcon, Undo2 } from 'lucide-react'
+import { Check, Copy, Download, Eraser, Undo2 } from 'lucide-react'
 import { ChangeEvent, useState } from 'react'
 import { toast } from 'sonner'
 import useCopy from 'use-copy'
 
 import { downloadText } from '~/shared/lib/download-text'
-import { getSentences } from '~/shared/lib/get-sentences'
 
-import { Button } from '~/shared/components/button'
 import { Textarea } from '~/shared/components/textarea'
 
-const TransformButton = ({
-  title,
-  disabled = false,
-  onClick
-}: {
-  title: string
-  disabled?: boolean
-  onClick: () => void
-}) => (
-  <Button onClick={onClick} disabled={disabled} size="sm" variant="outline">
-    {title}
-  </Button>
-)
+import { TransformButton } from './_components/transform-button'
+import { ActionButton } from './_components/action-button'
 
-const ActionButton = ({
-  title,
-  Icon,
-  disabled = false,
-  onClick
-}: {
-  title: string
-  onClick: () => void
-  disabled?: boolean
-  Icon: LucideIcon
-}) => (
-  <Button onClick={onClick} disabled={disabled} className="space-x-2">
-    <Icon size="1em" />
-    <span>{title}</span>
-  </Button>
-)
-
-const isUpper = (char: string) => char === char.toUpperCase()
+import { reverseText } from './_lib/reverse-text'
+import { sentenceCase } from './_lib/sentence-case'
+import { inverseCase } from './_lib/inverse-case'
+import { alternatedCase } from './_lib/alternated-case'
+import { snakeCase } from './_lib/snake-case'
+import { capitalizedCase } from './_lib/capitalized-case'
 
 export default function Page() {
   const [displayText, setDisplayText] = useState('')
@@ -64,62 +39,17 @@ export default function Page() {
     setDisplayText(e.target.value)
   }
 
-  function reverseText() {
-    setDisplayText(curr => curr.split('').reverse().join(''))
-  }
-
   const caseTransform = {
     upper: () => setDisplayText(curr => curr.toUpperCase()),
     lower: () => setDisplayText(curr => curr.toLowerCase()),
+    inverse: () => setDisplayText(curr => inverseCase(curr)),
     sentence: () => {
-      const sentencesArray = getSentences(displayText)
-      if (!sentencesArray) return
-
-      const charSplitSentences = sentencesArray.map(sentence =>
-        sentence.trim().split('')
-      )
-
-      const transformedChars = charSplitSentences.map(sentenceChars =>
-        sentenceChars
-          .map((char, i) => (i === 0 ? char.toUpperCase() : char.toLowerCase()))
-          .join('')
-      )
-      setDisplayText(transformedChars.join(' '))
+      const sentenceCaseText = sentenceCase(displayText)
+      sentenceCaseText && setDisplayText(sentenceCaseText)
     },
-    inverse: () => {
-      const splitChar = displayText.split('')
-      const inverted = splitChar.map(char =>
-        isUpper(char) ? char.toLowerCase() : char.toUpperCase()
-      )
-
-      setDisplayText(inverted.join(''))
-    },
-    alternate: () => {
-      const splitChar = displayText.split('')
-      const alternated = splitChar.map((char, i) =>
-        i % 2 === 0 ? char.toUpperCase() : char.toLowerCase()
-      )
-      setDisplayText(alternated.join(''))
-    },
-    snake: () => {
-      // https://stackoverflow.com/a/4328546
-      const normalizedText = displayText
-        .replace(/[^\w\s\']|_/g, '')
-        .replace(/\s+/g, ' ')
-      setDisplayText(normalizedText.toLowerCase().replaceAll(' ', '_'))
-    },
-    capitalize: () => {
-      const listOfSplitChars = displayText
-        .split(' ')
-        .map(word => word.split(''))
-      const capitalizedWords = listOfSplitChars.map(charList =>
-        charList
-          .map((char, i) => (i === 0 ? char.toUpperCase() : char.toLowerCase()))
-          .join('')
-      )
-
-      setDisplayText(capitalizedWords.join(' '))
-    }
+    alternate: () => setDisplayText(curr => alternatedCase(curr)),
+    snake: () => setDisplayText(curr => snakeCase(curr)),
+    capitalize: () => setDisplayText(curr => capitalizedCase(curr))
   }
 
   return (
@@ -168,7 +98,7 @@ export default function Page() {
             title="snake_case"
           />
           <TransformButton
-            onClick={reverseText}
+            onClick={() => setDisplayText(curr => reverseText(curr))}
             disabled={displayText.length < 1}
             title="Reverse"
           />
