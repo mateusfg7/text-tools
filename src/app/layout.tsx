@@ -9,6 +9,7 @@ import { Navbar } from './_components/navbar'
 import { ThemeProvider } from './_components/theme-provider'
 
 import './globals.css'
+import Script from 'next/script'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
 
@@ -24,6 +25,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          async
+          src="https://analytics.mateusf.com/script.js"
+          data-website-id={process.env.UMAMI_WEBSITE_ID}
+        />
+      </head>
       <body className={`${inter.variable} p-5 md:px-24 md:py-10`}>
         <ThemeProvider
           attribute="class"
