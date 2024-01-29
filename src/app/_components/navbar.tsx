@@ -3,9 +3,10 @@
 import { ReactNode } from 'react'
 import {
   ArrowLeftRight,
-  AsteriskSquare,
   BarChart3,
+  CaseSensitive,
   Fingerprint,
+  Heading1,
   KeyRound,
   MoreHorizontal,
   Text,
@@ -63,13 +64,13 @@ export function Navbar({ isOnDrawer = false }: Props) {
       <Section title="Cryptography">
         <NavbarItem
           isOnDrawer={isOnDrawer}
-          Icon={AsteriskSquare}
+          Icon={CaseSensitive}
           title="Caesar cipher"
           path="/cryptography/caesar"
         />
         <NavbarItem
           isOnDrawer={isOnDrawer}
-          Icon={AsteriskSquare}
+          Icon={Heading1}
           title="Letter to number"
           path="/cryptography/letter-number"
         />
