@@ -7,7 +7,11 @@ export function sortList(
   direction: SortDirection = 'asce'
 ) {
   const divisorChar = getDivisor(divisor)
-  const listArray = list.split(divisorChar).map(item => item.trim())
+  const listArray = list
+    .split(divisorChar)
+    .map(item => item.trim())
+    .filter(item => item !== divisorChar)
+    .filter(item => item !== '')
 
   const addSpace = divisor === 'comma'
   const sortedArray = listArray.sort()
