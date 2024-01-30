@@ -3,12 +3,13 @@
 import { ChangeEvent, useState } from 'react'
 import { Download, LucideIcon } from 'lucide-react'
 
-import { getSentences } from '~/shared/lib/get-sentences'
 import { downloadText } from '~/shared/lib/download-text'
 
 import { Textarea } from '~/shared/components/textarea'
 import { Button } from '~/shared/components/button'
 import { CopyButton } from '~/shared/components/copy-button'
+
+import { getStatistics } from './_lib/get-statistics'
 
 type CardProps = {
   title: string
@@ -45,10 +46,8 @@ export default function Page() {
     setText(e.target.value)
   }
 
-  const wordCount = text.split(' ').filter(word => word.length > 0).length
-  const charCount = text.replaceAll(' ', '').split('').length
-  const lineCount = text.split('\n').filter(word => word.length > 0).length
-  const sentencesCount = getSentences(text)?.length ?? 0
+  const { charCount, lineCount, sentencesCount, wordCount } =
+    getStatistics(text)
 
   const visualData = `Char Count:       ${charCount}\nWord Count:       ${wordCount}\nSentences Count:  ${sentencesCount}\nLine Count:       ${lineCount}`
 
