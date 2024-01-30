@@ -1,20 +1,21 @@
 import { Divisor, getDivisor } from './divisor'
 
 export function removeDuplicated(list: string, divisor: Divisor) {
-  console.log(list)
-
   const divisorChar = getDivisor(divisor)
-  console.log(divisorChar)
 
-  const listArray = list.split(divisorChar)
-  console.log(listArray)
+  const listArray = list
+    .split(divisorChar)
+    .map(item => item.trim())
+    .filter(item => item !== divisorChar)
+    .filter(item => item !== '')
 
   // https://stackoverflow.com/a/9229821
   let seen: { [key: string]: boolean } = {}
   const uniq = listArray.filter(item => {
-    return seen.hasOwnProperty(item.trim()) ? false : (seen[item.trim()] = true)
+    return seen.hasOwnProperty(item) ? false : (seen[item] = true)
   })
-  console.log(uniq)
 
-  return uniq.join(divisorChar).trim()
+  const addSpace = divisor === 'comma'
+
+  return uniq.join(addSpace ? `${divisorChar} ` : divisorChar).trim()
 }
