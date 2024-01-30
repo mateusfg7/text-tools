@@ -11,7 +11,7 @@ const getDivisor = (d: Divisor) => {
 }
 
 const getKey = () => {
-  const specialChars = '!?"\'., []{}<>\\|'.split('')
+  const specialChars = '!?"\'., []{}<>\\|-'.split('')
   const lowerChars = 'aâãáàbcçdeêẽéèfghiîĩíìjklmnoôõóòpqrstuûũúùvwxyz'.split('')
   const upperChars = lowerChars.map(char => char.toUpperCase())
 
