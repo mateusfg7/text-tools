@@ -18,7 +18,7 @@ import {
 import { Input } from '~/shared/components/input'
 import { CopyButton } from '~/shared/components/copy-button'
 
-import { caesarCipher } from './_lib/caesar-cipher'
+import { Method, caesarCipher } from './_lib/caesar-cipher'
 
 const ActionButton = ({
   title,
@@ -42,18 +42,12 @@ const ActionButton = ({
   </Button>
 )
 
-type CaesarMethod = 'Decrypt' | 'Encrypt'
-
 export default function Page() {
   const [plainText, setPlainText] = useState('')
   const [caesarShift, setCaesarShift] = useState(1)
-  const [caesarMethod, setCaesarMethod] = useState<CaesarMethod>('Encrypt')
+  const [caesarMethod, setCaesarMethod] = useState<Method>('encode')
 
-  const cipheredText = caesarCipher(
-    plainText,
-    caesarShift,
-    caesarMethod === 'Decrypt'
-  )
+  const cipheredText = caesarCipher(plainText, caesarShift, caesarMethod)
 
   return (
     <div className="space-y-7">
@@ -90,15 +84,15 @@ export default function Page() {
           />
         </div>
         <Select
-          onValueChange={value => setCaesarMethod(value as CaesarMethod)}
-          defaultValue="Encrypt"
+          onValueChange={value => setCaesarMethod(value as Method)}
+          defaultValue="encode"
         >
           <SelectTrigger className="w-fit space-x-3">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="Encrypt">Encrypt</SelectItem>
-            <SelectItem value="Decrypt">Decrypt</SelectItem>
+            <SelectItem value="encode">Encode</SelectItem>
+            <SelectItem value="decode">Decode</SelectItem>
           </SelectContent>
         </Select>
         <CopyButton

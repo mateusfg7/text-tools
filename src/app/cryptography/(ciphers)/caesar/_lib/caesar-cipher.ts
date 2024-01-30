@@ -1,10 +1,14 @@
+export type Method = 'encode' | 'decode'
+
 // https://www.30secondsofcode.org/js/s/caesar-cipher/
 export function caesarCipher(
   str: string,
   shift: number,
-  decrypt = false
+  method: Method = 'encode'
 ): string {
-  const s = decrypt ? (26 - shift) % 26 : shift
+  const decode = method === 'decode'
+
+  const s = decode ? (26 - shift) % 26 : shift
   const n = s > 0 ? s : 26 + (s % 26)
 
   return str
