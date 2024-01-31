@@ -38,7 +38,7 @@ const HashRow = ({ title, hash }: HashRowProps) => (
       text={hash ?? ''}
       size="icon"
       variant="outline"
-      className="text-lg space-x-0"
+      className="text-lg space-x-0 hidden md:flex"
       disabled={!hash}
       toastMessage={`${title} copied to the clipboard`}
     >
@@ -76,7 +76,6 @@ export default function Page() {
     })
       .then(res => res.json())
       .then((res: HashApiResponse) => {
-        console.log(res)
         setHashes(res)
       })
       .catch(() => toast.error('Error while generating hashes!'))
