@@ -17,7 +17,7 @@ const Link = ({ text, className, ...props }: LinkProps) => (
 
 export function Footer() {
   return (
-    <footer className="flex justify-center items-center flex-wrap p-6 gap-4">
+    <footer className="flex justify-center items-center flex-wrap gap-4 py-3">
       <Link
         href="https://mateusf.com?ref=https://text.mateusf.com"
         text="by Mateus Felipe"

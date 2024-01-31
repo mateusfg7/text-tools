@@ -35,7 +35,7 @@ type Props = {
 }
 export function Navbar({ isOnDrawer = false }: Props) {
   return (
-    <div className="space-y-4 text-lg p-7 md:p-0">
+    <div className="space-y-4 text-lg p-7 md:p-0 max-h-dvh overflow-y-auto md:max-h-[calc(100vh-9rem)]">
       <Section title="Text">
         <NavbarItem
           isOnDrawer={isOnDrawer}
