@@ -35,7 +35,7 @@ export default function RootLayout({
           data-website-id={process.env.UMAMI_WEBSITE_ID}
         />
       </head>
-      <body className={`${inter.variable} p-5 md:px-24 md:py-6`}>
+      <body className={inter.variable}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -43,7 +43,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Toaster />
-          <div className="flex flex-col gap-7">
+          <div className="flex flex-col gap-7 m-auto min-h-dvh md:w-[1100px] p-5 md:py-6">
             <Header />
             <div className="flex-1 gap-20 md:flex">
               <div className="hidden md:block">
