@@ -14,7 +14,6 @@ import {
   Wand2
 } from 'lucide-react'
 
-import { Separator } from '~/shared/components/separator'
 import { NavbarItem } from './navbar-item'
 
 const Section = ({
@@ -24,7 +23,7 @@ const Section = ({
   title: string
   children: ReactNode
 }) => (
-  <div className="space-y-1">
+  <div className="space-y-1 border-b border-border py-4 first:pt-0 last:pb-0 last:border-none">
     <span className="px-3 text-sm opacity-70">{title}</span>
     <div className="space-y-px">{children}</div>
   </div>
@@ -35,7 +34,7 @@ type Props = {
 }
 export function Navbar({ isOnDrawer = false }: Props) {
   return (
-    <div className="space-y-4 text-lg p-7 md:p-0 max-h-dvh overflow-y-auto md:max-h-[calc(100vh-9rem)]">
+    <div className="text-lg p-7 md:p-0 max-h-dvh overflow-y-auto md:max-h-[calc(100vh-9rem)]">
       <Section title="Text">
         <NavbarItem
           isOnDrawer={isOnDrawer}
@@ -66,8 +65,6 @@ export function Navbar({ isOnDrawer = false }: Props) {
         />
       </Section>
 
-      <Separator />
-
       <Section title="Cryptography">
         <NavbarItem
           isOnDrawer={isOnDrawer}
@@ -94,8 +91,6 @@ export function Navbar({ isOnDrawer = false }: Props) {
           path="/cryptography/hash"
         />
       </Section>
-
-      <Separator />
 
       <Section title="Misc">
         <NavbarItem
