@@ -34,7 +34,7 @@ type Props = {
 }
 export function Navbar({ isOnDrawer = false }: Props) {
   return (
-    <div className="text-lg p-7 md:p-0 max-h-dvh overflow-y-auto md:max-h-[calc(100vh-9rem)]">
+    <div className="text-lg p-7 md:p-0 max-h-dvh overflow-y-auto md:max-h-[calc(100vh-9rem)] w-max">
       <Section title="Text">
         <NavbarItem
           isOnDrawer={isOnDrawer}
@@ -95,18 +95,17 @@ export function Navbar({ isOnDrawer = false }: Props) {
       <Section title="Misc">
         <NavbarItem
           isOnDrawer={isOnDrawer}
-          disabled
-          Icon={ArrowLeftRight}
-          title="Converter"
-          path="/misc/converter"
+          Icon={KeyRound}
+          title="Password Generator"
+          path="/misc/password"
         />
 
         <NavbarItem
           isOnDrawer={isOnDrawer}
           disabled
-          Icon={KeyRound}
-          title="Password Generator"
-          path="/misc/password"
+          Icon={ArrowLeftRight}
+          title="Converter"
+          path="/misc/converter"
         />
       </Section>
     </div>
