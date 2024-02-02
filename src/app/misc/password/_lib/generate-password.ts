@@ -1,30 +1,95 @@
-import { getRandomPassword } from './get-random-password'
-import { getAlphabet } from './get-alphabet'
+import { shuffleArray } from '~/shared/lib/shuffle-array'
 
 export type Options = {
   size: number
-  characters: {
-    upper: boolean
-    lower: boolean
-    numbers: boolean
-    special: boolean
+  minimum: {
+    upper: number
+    lower: number
+    numbers: number
+    special: number
   }
 }
 
 export function generatePassword({
   size,
-  characters: { lower, numbers, special, upper }
+  minimum: { lower, numbers, special, upper }
 }: Options) {
-  const isAllDisabled = !(lower || upper || special || numbers)
+  const isAllDisabled = lower < 1 && upper < 1 && numbers < 1 && special < 1
 
-  const characters = isAllDisabled
-    ? { lower: true, numbers, special, upper }
+  const minimum = isAllDisabled
+    ? { lower: 1, numbers: 0, special: 0, upper: 0 }
     : { lower, numbers, special, upper }
 
-  const alphabet = getAlphabet(characters)
+  const lowercaseCharSet = 'abcdefghijklmnopqrstuvwxyz'
+  const uppercaseCharSet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  const numberCharSet = '0123456789'
+  const specialCharSet = '!@#$%&*'
 
-  return getRandomPassword({
-    size,
-    alphabet
-  })
+  let allCharSet = ''
+
+  let positions: string[] = []
+
+  if (minimum.lower > 0) {
+    allCharSet += lowercaseCharSet
+    for (let index = 0; index < minimum.lower; index++) {
+      positions.push('l')
+    }
+  }
+
+  if (minimum.upper > 0) {
+    allCharSet += uppercaseCharSet
+    for (let index = 0; index < minimum.upper; index++) {
+      positions.push('u')
+    }
+  }
+
+  if (minimum.numbers > 0) {
+    allCharSet += numberCharSet
+    for (let index = 0; index < minimum.numbers; index++) {
+      positions.push('n')
+    }
+  }
+
+  if (minimum.special > 0) {
+    allCharSet += specialCharSet
+    for (let index = 0; index < minimum.special; index++) {
+      positions.push('s')
+    }
+  }
+
+  while (positions.length < size) {
+    positions.push('a')
+  }
+
+  positions = shuffleArray(positions)
+
+  let password = ''
+  for (let i = 0; i < size; i++) {
+    let positionChars = ''
+
+    switch (positions[i]) {
+      case 'l':
+        positionChars = lowercaseCharSet
+        break
+      case 'u':
+        positionChars = uppercaseCharSet
+        break
+      case 'n':
+        positionChars = numberCharSet
+        break
+      case 's':
+        positionChars = specialCharSet
+        break
+      case 'a':
+        positionChars = allCharSet
+        break
+      default:
+        break
+    }
+
+    const randomCharIndex = Math.floor(Math.random() * positionChars.length - 1)
+    password += positionChars.charAt(randomCharIndex)
+  }
+
+  return password
 }
