@@ -40,11 +40,13 @@ export default function Page() {
   const handleGeneratePassword = (options = defaultOptions) =>
     setPassword(generatePassword(options))
 
-  function handleSetPasswordLength(value: number[]) {
-    if (value[0] < 8 || value[0] > 128) return
+  function handleSetPasswordLength(value: number) {
+    if (value < minimumPasswordLength) value = minimumPasswordLength
+    if (value < 8) value = 8
+    if (value > 128) value = 128
 
-    setPasswordLength(value[0])
-    handleGeneratePassword({ ...defaultOptions, size: value[0] })
+    setPasswordLength(value)
+    handleGeneratePassword({ ...defaultOptions, size: value })
   }
 
   function handleSetMinimum(
@@ -97,7 +99,8 @@ export default function Page() {
     setMinimumPasswordLength(minimumSum)
 
     if (passwordLength < minimumSum) {
-      handleSetPasswordLength([minimumSum])
+      handleSetPasswordLength(minimumSum)
+      updatedOption.size = minimumSum
     }
 
     handleGeneratePassword(updatedOption)
@@ -119,7 +122,7 @@ export default function Page() {
               variant="ghost"
               size="icon"
               className="rounded-full"
-              onClick={() => handleSetPasswordLength([passwordLength - 1])}
+              onClick={() => handleSetPasswordLength(passwordLength - 1)}
             >
               <Minus size="1em" />
             </Button>
@@ -127,7 +130,9 @@ export default function Page() {
               id="password-length"
               className="max-w-md"
               value={[passwordLength]}
-              onValueChange={handleSetPasswordLength}
+              onValueChange={valueArray =>
+                handleSetPasswordLength(valueArray[0])
+              }
               step={1}
               min={minimumPasswordLength < 8 ? 8 : minimumPasswordLength}
               max={128}
@@ -136,7 +141,7 @@ export default function Page() {
               variant="ghost"
               size="icon"
               className="rounded-full"
-              onClick={() => handleSetPasswordLength([passwordLength + 1])}
+              onClick={() => handleSetPasswordLength(passwordLength + 1)}
             >
               <Plus size="1em" />
             </Button>

@@ -1,4 +1,5 @@
 import { shuffleArray } from '~/shared/lib/shuffle-array'
+import { randRange } from '~/shared/lib/rand-range'
 
 export type Options = {
   size: number
@@ -87,7 +88,7 @@ export function generatePassword({
         break
     }
 
-    const randomCharIndex = Math.floor(Math.random() * positionChars.length - 1)
+    const randomCharIndex = randRange(0, positionChars.length - 1)
     password += positionChars.charAt(randomCharIndex)
   }
 
