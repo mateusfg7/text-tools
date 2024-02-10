@@ -6,6 +6,8 @@ import {
   BarChart3,
   CaseSensitive,
   Fingerprint,
+  Folder,
+  FolderTree,
   Heading1,
   KeyRound,
   List,
@@ -98,6 +100,12 @@ export function Navbar({ isOnDrawer = false }: Props) {
           Icon={KeyRound}
           title="Password Generator"
           path="/misc/password"
+        />
+        <NavbarItem
+          isOnDrawer={isOnDrawer}
+          Icon={FolderTree}
+          title="Ascii File Tree"
+          path="/misc/tree"
         />
 
         <NavbarItem
