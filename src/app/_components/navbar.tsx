@@ -6,14 +6,12 @@ import {
   BarChart3,
   CaseSensitive,
   Fingerprint,
-  Folder,
   FolderTree,
   Heading1,
   KeyRound,
   List,
   MoreHorizontal,
-  Text,
-  Wand2
+  Text
 } from 'lucide-react'
 
 import { NavbarItem } from './navbar-item'
@@ -36,7 +34,7 @@ type Props = {
 }
 export function Navbar({ isOnDrawer = false }: Props) {
   return (
-    <div className="text-lg p-7 md:p-0 max-h-dvh overflow-y-auto md:max-h-[calc(100vh-9rem)] w-max">
+    <div className="text-lg p-7 md:p-0 max-h-dvh overflow-y-auto md:max-h-[98vh] w-max">
       <Section title="Text">
         <NavbarItem
           isOnDrawer={isOnDrawer}
@@ -56,14 +54,6 @@ export function Navbar({ isOnDrawer = false }: Props) {
           Icon={BarChart3}
           title="Statistics"
           path="/text/statistics"
-        />
-
-        <NavbarItem
-          isOnDrawer={isOnDrawer}
-          disabled
-          Icon={Wand2}
-          title="Styling"
-          path="/text/styling"
         />
       </Section>
 
