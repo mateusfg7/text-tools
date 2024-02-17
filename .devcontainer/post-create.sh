@@ -9,6 +9,8 @@ sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1
    -p https://github.com/zsh-users/zsh-completions \
    -p https://github.com/zdharma-continuum/fast-syntax-highlighting
 
+chsh -s $(which zsh) bun
+
 # Setup GIT
 git config --global alias.co "checkout"
 git config --global alias.cm "checkout main"
