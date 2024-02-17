@@ -1,7 +1,11 @@
-FROM ghcr.io/nhaef/devcontainer-bun:latest
+ARG VARIANT=latest
+FROM oven/bun:${VARIANT}
 
-# Persist host git config to container.
-VOLUME ~/.gitconfig:/root/.gitconfig
+RUN apt-get update \
+    && apt-get -y install --no-install-recommends git nano \
+    && apt-get auto-remove -y \
+    && apt-get clean -y
 
-# Use ZSH as default shell
-ENV SHELL=/usr/bin/zsh
+VOLUME ~/.gitconfig:/home/bun/.gitconfig
+
+USER bun
