@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/devcontainers/base:alpine
+FROM mcr.microsoft.com/devcontainers/base:latest
 
 # Install BUN
 
