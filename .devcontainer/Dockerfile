@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/devcontainers/base:latest
+FROM mcr.microsoft.com/devcontainers/base:ubuntu
 
 # Install BUN
 
