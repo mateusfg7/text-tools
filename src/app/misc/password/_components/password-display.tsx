@@ -10,7 +10,7 @@ type Props = {
 }
 export function PasswordDisplay({ password }: Props) {
   return (
-    <div className="flex justify-center flex-wrap border border-border w-full p-4 bg-muted/50 rounded-md">
+    <div className="flex font-mono justify-center flex-wrap border border-border w-full p-4 bg-muted/50 rounded-md">
       {password.split('').map((char, i) => {
         if (isUpperCasedLetter(char) || isLowerCasedLetter(char))
           return (
