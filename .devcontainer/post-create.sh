@@ -16,3 +16,7 @@ git config --global alias.cb "checkout -b"
 git config --global alias.st "status -sb"
 git config --global alias.lg "log --pretty=format:'%Cred%h%Creset %C(bold)%cr%Creset %Cgreen<%an>%Creset %s' --max-count=30"
 git config --global alias.rollback "reset --soft HEAD~1"
+
+# Install BUN
+curl -fsSL https://bun.sh/install | bash
+echo '\n# bun\nexport BUN_INSTALL="$HOME/.bun"\nexport PATH=$BUN_INSTALL/bin:$PATH' >> ~/.zshrc
