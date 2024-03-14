@@ -1,7 +1,8 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { Suspense, useRef, useState } from 'react'
 import { Download } from 'lucide-react'
+import { parseAsBoolean, useQueryState } from 'nuqs'
 
 import { downloadText } from '~/shared/lib/download-text'
 import { Label } from '~/shared/components/label'
@@ -13,14 +14,26 @@ import { Switch } from '~/shared/components/switch'
 import { parseInput } from './_lib/parse-input'
 import { generateTree } from './_lib/generate-tree'
 
-export default function Page() {
+function ClientPage() {
   const [plainText, setPlainText] = useState(
     'src\n	app\n		page.tsx\n	components\n		header.tsx'
   )
-  const [fancy, setFancy] = useState(true)
-  const [fullPath, setFullPath] = useState(false)
-  const [rootDot, setRootDot] = useState(false)
-  const [trailingDirSlash, setTrailingDirSlash] = useState(false)
+  const [fancy, setFancy] = useQueryState(
+    'fancy',
+    parseAsBoolean.withDefault(true)
+  )
+  const [fullPath, setFullPath] = useQueryState(
+    'fullPath',
+    parseAsBoolean.withDefault(false)
+  )
+  const [rootDot, setRootDot] = useQueryState(
+    'rootDot',
+    parseAsBoolean.withDefault(false)
+  )
+  const [trailingDirSlash, setTrailingDirSlash] = useQueryState(
+    'trailingDirSlash',
+    parseAsBoolean.withDefault(false)
+  )
 
   const charset: 'utf-8' | 'ascii' = fancy ? 'utf-8' : 'ascii'
 
@@ -132,5 +145,13 @@ export default function Page() {
         </Button>
       </div>
     </div>
+  )
+}
+
+export default function Page() {
+  return (
+    <Suspense>
+      <ClientPage />
+    </Suspense>
   )
 }

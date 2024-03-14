@@ -1,6 +1,7 @@
 import { padZero } from '~/shared/lib/pad-zero'
 
-export type Divisor = 'hyphen' | 'space'
+export const Divisors = ['hyphen', 'space'] as const
+export type Divisor = (typeof Divisors)[number]
 const getDivisor = (d: Divisor) => {
   switch (d) {
     case 'hyphen':
@@ -48,7 +49,8 @@ function decrypt(text: string, divisor: string) {
     .join('\n')
 }
 
-export type Method = 'Decrypt' | 'Encrypt'
+export const Methods = ['Decrypt', 'Encrypt'] as const
+export type Method = (typeof Methods)[number]
 export function letterToNumber(
   text: string,
   divisor: Divisor = 'space',

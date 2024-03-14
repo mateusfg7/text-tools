@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import {
   ArrowDownAZ,
   ArrowDownZA,
@@ -9,6 +9,7 @@ import {
   LucideIcon,
   Undo2
 } from 'lucide-react'
+import { useQueryState, parseAsStringLiteral } from 'nuqs'
 
 import { downloadText } from '~/shared/lib/download-text'
 
@@ -24,8 +25,8 @@ import {
 import { CopyButton } from '~/shared/components/copy-button'
 
 import { removeDuplicated } from './_lib/remove-duplicated'
-import { Divisor } from './_lib/divisor'
-import { SortDirection, sortList } from './_lib/sort-list'
+import { Divisor, Divisors } from './_lib/divisor'
+import { SortDirection, SortDirections, sortList } from './_lib/sort-list'
 
 const ActionButton = ({
   title,
@@ -47,10 +48,16 @@ const ActionButton = ({
   </Button>
 )
 
-export default function Page() {
+function ClientPage() {
   const [displayText, setDisplayText] = useState('')
-  const [divisor, setDivisor] = useState<Divisor>('comma')
-  const [sortDirection, setSortDirection] = useState<SortDirection>('asce')
+  const [divisor, setDivisor] = useQueryState(
+    'divisor',
+    parseAsStringLiteral(Divisors).withDefault('comma')
+  )
+  const [sortDirection, setSortDirection] = useQueryState(
+    'direction',
+    parseAsStringLiteral(SortDirections).withDefault('asce')
+  )
   const [history, setHistory] = useState<string[]>([])
 
   function saveCurrentState() {
@@ -80,7 +87,7 @@ export default function Page() {
             <span className="px-3">Divider</span>
             <Select
               onValueChange={value => setDivisor(value as Divisor)}
-              defaultValue="comma"
+              defaultValue={divisor}
             >
               <SelectTrigger className="w-fit space-x-3 text-base border-y-0 border-r-0">
                 <SelectValue />
@@ -96,7 +103,7 @@ export default function Page() {
           <div className="flex items-center gap-1 border border-border rounded-md">
             <Select
               onValueChange={value => setSortDirection(value as SortDirection)}
-              defaultValue="asce"
+              defaultValue={sortDirection}
             >
               <SelectTrigger className="w-fit space-x-3 text-base border-y-0 border-l-0">
                 <SelectValue />
@@ -151,5 +158,13 @@ export default function Page() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function Page() {
+  return (
+    <Suspense>
+      <ClientPage />
+    </Suspense>
   )
 }

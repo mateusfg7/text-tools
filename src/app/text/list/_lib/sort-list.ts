@@ -1,6 +1,7 @@
 import { Divisor, getDivisor } from './divisor'
 
-export type SortDirection = 'asce' | 'desc'
+export const SortDirections = ['asce', 'desc'] as const
+export type SortDirection = (typeof SortDirections)[number]
 export function sortList(
   list: string,
   divisor: Divisor,

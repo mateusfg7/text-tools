@@ -1,4 +1,5 @@
-export type Method = 'encode' | 'decode'
+export const Methods = ['encode', 'decode'] as const
+export type Method = (typeof Methods)[number]
 
 // https://www.30secondsofcode.org/js/s/caesar-cipher/
 export function caesarCipher(

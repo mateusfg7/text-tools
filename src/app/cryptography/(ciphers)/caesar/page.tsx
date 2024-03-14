@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import { Download, LucideIcon } from 'lucide-react'
+import { parseAsInteger, parseAsStringLiteral, useQueryState } from 'nuqs'
 
 import { downloadText } from '~/shared/lib/download-text'
 
@@ -18,7 +19,7 @@ import {
 import { Input } from '~/shared/components/input'
 import { CopyButton } from '~/shared/components/copy-button'
 
-import { Method, caesarCipher } from './_lib/caesar-cipher'
+import { Method, Methods, caesarCipher } from './_lib/caesar-cipher'
 
 const ActionButton = ({
   title,
@@ -42,10 +43,16 @@ const ActionButton = ({
   </Button>
 )
 
-export default function Page() {
+function ClientPage() {
   const [plainText, setPlainText] = useState('')
-  const [caesarShift, setCaesarShift] = useState(1)
-  const [caesarMethod, setCaesarMethod] = useState<Method>('encode')
+  const [caesarShift, setCaesarShift] = useQueryState(
+    'shift',
+    parseAsInteger.withDefault(1)
+  )
+  const [caesarMethod, setCaesarMethod] = useQueryState(
+    'method',
+    parseAsStringLiteral(Methods).withDefault('encode')
+  )
 
   const cipheredText = caesarCipher(plainText, caesarShift, caesarMethod)
 
@@ -85,7 +92,7 @@ export default function Page() {
         </div>
         <Select
           onValueChange={value => setCaesarMethod(value as Method)}
-          defaultValue="encode"
+          defaultValue={caesarMethod}
         >
           <SelectTrigger className="w-fit space-x-3">
             <SelectValue />
@@ -109,5 +116,13 @@ export default function Page() {
         />
       </div>
     </div>
+  )
+}
+
+export default function Page() {
+  return (
+    <Suspense>
+      <ClientPage />
+    </Suspense>
   )
 }
