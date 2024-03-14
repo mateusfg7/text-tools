@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Minus, Plus, RefreshCw } from 'lucide-react'
+import { parseAsInteger, useQueryState } from 'nuqs'
 
 import { Button } from '~/shared/components/button'
 import { Input } from '~/shared/components/input'
@@ -13,10 +14,22 @@ import { Options, generatePassword } from './_lib/generate-password'
 import { PasswordDisplay } from './_components/password-display'
 
 export default function Page() {
-  const [minimumLowerCase, setMinimumLowerCase] = useState(4)
-  const [minimumUpperCase, setMinimumUpperCase] = useState(4)
-  const [minimumNumbers, setMinimumNumbers] = useState(4)
-  const [minimumSpecialChars, setMinimumSpecialChars] = useState(4)
+  const [minimumLowerCase, setMinimumLowerCase] = useQueryState(
+    'lower',
+    parseAsInteger.withDefault(4)
+  )
+  const [minimumUpperCase, setMinimumUpperCase] = useQueryState(
+    'upper',
+    parseAsInteger.withDefault(4)
+  )
+  const [minimumNumbers, setMinimumNumbers] = useQueryState(
+    'numbers',
+    parseAsInteger.withDefault(4)
+  )
+  const [minimumSpecialChars, setMinimumSpecialChars] = useQueryState(
+    'special',
+    parseAsInteger.withDefault(4)
+  )
 
   const [minimumPasswordLength, setMinimumPasswordLength] = useState(
     minimumLowerCase + minimumUpperCase + minimumNumbers + minimumSpecialChars
@@ -105,6 +118,41 @@ export default function Page() {
 
     handleGeneratePassword(updatedOption)
   }
+
+  function parseInitialData() {
+    let localMinimumLowerCase: number
+    if (minimumLowerCase < 0) localMinimumLowerCase = 0
+    else if (minimumLowerCase > 10) localMinimumLowerCase = 10
+    else localMinimumLowerCase = minimumLowerCase
+
+    let localMinimumUpperCase: number
+    if (minimumUpperCase < 0) localMinimumUpperCase = 0
+    else if (minimumUpperCase > 10) localMinimumUpperCase = 10
+    else localMinimumUpperCase = minimumUpperCase
+
+    let localMinimumNumbers: number
+    if (minimumNumbers < 0) localMinimumNumbers = 0
+    else if (minimumNumbers > 10) localMinimumNumbers = 10
+    else localMinimumNumbers = minimumNumbers
+
+    let localMinimumSpecialChars: number
+    if (minimumSpecialChars < 0) localMinimumSpecialChars = 0
+    else if (minimumSpecialChars > 10) localMinimumSpecialChars = 10
+    else localMinimumSpecialChars = minimumSpecialChars
+
+    setMinimumLowerCase(localMinimumLowerCase)
+    setMinimumUpperCase(localMinimumUpperCase)
+    setMinimumNumbers(localMinimumNumbers)
+    setMinimumSpecialChars(localMinimumSpecialChars)
+    setMinimumPasswordLength(
+      localMinimumLowerCase +
+        localMinimumUpperCase +
+        localMinimumNumbers +
+        localMinimumSpecialChars
+    )
+  }
+
+  useEffect(parseInitialData)
 
   return (
     <div className="space-y-14">
