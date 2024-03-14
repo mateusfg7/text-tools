@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Download, LucideIcon } from 'lucide-react'
+import { parseAsStringLiteral, useQueryState } from 'nuqs'
 
 import { downloadText } from '~/shared/lib/download-text'
 
@@ -17,7 +18,13 @@ import {
 } from '~/shared/components/select'
 import { CopyButton } from '~/shared/components/copy-button'
 
-import { Divisor, Method, letterToNumber } from './_lib/letter-to-number'
+import {
+  Divisor,
+  Divisors,
+  Method,
+  Methods,
+  letterToNumber
+} from './_lib/letter-to-number'
 
 const ActionButton = ({
   title,
@@ -43,8 +50,14 @@ const ActionButton = ({
 
 export default function Page() {
   const [plainText, setPlainText] = useState('')
-  const [method, setMethod] = useState<Method>('Encrypt')
-  const [divisor, setDivisor] = useState<Divisor>('space')
+  const [method, setMethod] = useQueryState(
+    'method',
+    parseAsStringLiteral(Methods).withDefault('Encrypt')
+  )
+  const [divisor, setDivisor] = useQueryState(
+    'divisor',
+    parseAsStringLiteral(Divisors).withDefault('space')
+  )
 
   const cipheredText = letterToNumber(plainText, divisor, method)
 
@@ -74,7 +87,7 @@ export default function Page() {
           <span className="px-3">Divider</span>
           <Select
             onValueChange={value => setDivisor(value as Divisor)}
-            defaultValue="space"
+            defaultValue={divisor}
           >
             <SelectTrigger className="w-fit space-x-3 text-base border-y-0 border-r-0">
               <SelectValue />
@@ -87,7 +100,7 @@ export default function Page() {
         </div>
         <Select
           onValueChange={value => setMethod(value as Method)}
-          defaultValue="Encrypt"
+          defaultValue={method}
         >
           <SelectTrigger className="w-fit space-x-3">
             <SelectValue />
