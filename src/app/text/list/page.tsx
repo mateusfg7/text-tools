@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import {
   ArrowDownAZ,
   ArrowDownZA,
@@ -48,7 +48,7 @@ const ActionButton = ({
   </Button>
 )
 
-export default function Page() {
+function ClientPage() {
   const [displayText, setDisplayText] = useState('')
   const [divisor, setDivisor] = useQueryState(
     'divisor',
@@ -158,5 +158,13 @@ export default function Page() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function Page() {
+  return (
+    <Suspense>
+      <ClientPage />
+    </Suspense>
   )
 }

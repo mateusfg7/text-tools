@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { Minus, Plus, RefreshCw } from 'lucide-react'
 import { parseAsInteger, useQueryState } from 'nuqs'
 
@@ -13,7 +13,7 @@ import { CopyButton } from '~/shared/components/copy-button'
 import { Options, generatePassword } from './_lib/generate-password'
 import { PasswordDisplay } from './_components/password-display'
 
-export default function Page() {
+function ClientPage() {
   const [minimumLowerCase, setMinimumLowerCase] = useQueryState(
     'lower',
     parseAsInteger.withDefault(4)
@@ -277,5 +277,13 @@ export default function Page() {
         </Button>
       </div>
     </div>
+  )
+}
+
+export default function Page() {
+  return (
+    <Suspense>
+      <ClientPage />
+    </Suspense>
   )
 }

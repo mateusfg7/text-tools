@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import { Download, LucideIcon } from 'lucide-react'
 import { parseAsStringLiteral, useQueryState } from 'nuqs'
 
@@ -48,7 +48,7 @@ const ActionButton = ({
   </Button>
 )
 
-export default function Page() {
+function ClientPage() {
   const [plainText, setPlainText] = useState('')
   const [method, setMethod] = useQueryState(
     'method',
@@ -124,5 +124,13 @@ export default function Page() {
         />
       </div>
     </div>
+  )
+}
+
+export default function Page() {
+  return (
+    <Suspense>
+      <ClientPage />
+    </Suspense>
   )
 }

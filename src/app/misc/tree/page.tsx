@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { Suspense, useRef, useState } from 'react'
 import { Download } from 'lucide-react'
 import { parseAsBoolean, useQueryState } from 'nuqs'
 
@@ -14,7 +14,7 @@ import { Switch } from '~/shared/components/switch'
 import { parseInput } from './_lib/parse-input'
 import { generateTree } from './_lib/generate-tree'
 
-export default function Page() {
+function ClientPage() {
   const [plainText, setPlainText] = useState(
     'src\n	app\n		page.tsx\n	components\n		header.tsx'
   )
@@ -145,5 +145,13 @@ export default function Page() {
         </Button>
       </div>
     </div>
+  )
+}
+
+export default function Page() {
+  return (
+    <Suspense>
+      <ClientPage />
+    </Suspense>
   )
 }
