@@ -98,7 +98,8 @@ function decrypt(text: string) {
   return decodedChars.join('')
 }
 
-export type Method = 'encode' | 'decode'
+export const Methods = ['encode', 'decode'] as const
+export type Method = (typeof Methods)[number]
 export function morse(text: string, method: Method = 'encode') {
   return method === 'encode' ? encrypt(text) : decrypt(text)
 }

@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Download, LucideIcon } from 'lucide-react'
+import { parseAsStringLiteral, useQueryState } from 'nuqs'
 
 import { downloadText } from '~/shared/lib/download-text'
 
@@ -17,7 +18,7 @@ import {
 } from '~/shared/components/select'
 import { CopyButton } from '~/shared/components/copy-button'
 
-import { Method, morse } from './_lib/morse'
+import { Method, Methods, morse } from './_lib/morse'
 
 const ActionButton = ({
   title,
@@ -43,7 +44,10 @@ const ActionButton = ({
 
 export default function Page() {
   const [plainText, setPlainText] = useState('')
-  const [method, setMethod] = useState<Method>('encode')
+  const [method, setMethod] = useQueryState(
+    'method',
+    parseAsStringLiteral(Methods).withDefault('encode')
+  )
 
   const encodedText = morse(plainText, method)
 
@@ -73,7 +77,7 @@ export default function Page() {
       <div className="flex justify-center gap-2 flex-wrap">
         <Select
           onValueChange={value => setMethod(value as Method)}
-          defaultValue="encode"
+          defaultValue={method}
         >
           <SelectTrigger className="w-fit space-x-3">
             <SelectValue />
