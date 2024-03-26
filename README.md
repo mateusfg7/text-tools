@@ -1,6 +1,6 @@
 <div align="center">
   
-  # Text Tools
+<h1> <img src=".github/assets/banner.png" width="300" /> </h1>
 
 A collection of text transform tools, like change string case, get text statistics, generate hashes, and more!
 
