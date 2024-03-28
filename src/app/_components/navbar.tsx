@@ -10,6 +10,7 @@ import {
   Heading1,
   KeyRound,
   List,
+  LockKeyhole,
   MoreHorizontal,
   Text
 } from 'lucide-react'
@@ -81,6 +82,12 @@ export function Navbar({ isOnDrawer = false }: Props) {
           Icon={Fingerprint}
           title="Hash functions"
           path="/cryptography/hash"
+        />
+        <NavbarItem
+          isOnDrawer={isOnDrawer}
+          Icon={LockKeyhole}
+          title="Base64"
+          path="/cryptography/base64"
         />
       </Section>
 
