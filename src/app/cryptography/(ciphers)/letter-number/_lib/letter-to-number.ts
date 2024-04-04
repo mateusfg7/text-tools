@@ -14,9 +14,10 @@ const getDivisor = (d: Divisor) => {
 const getKey = () => {
   const specialChars = '!?"\'., []{}<>\\|-'.split('')
   const lowerChars = 'aâãáàbcçdeêẽéèfghiîĩíìjklmnoôõóòpqrstuûũúùvwxyz'.split('')
+  const numbers = '0123456789'.split('')
   const upperChars = lowerChars.map(char => char.toUpperCase())
 
-  return [...lowerChars, ...upperChars, ...specialChars]
+  return [...lowerChars, ...upperChars, ...specialChars, ...numbers]
 }
 
 function encrypt(text: string, divisor: string) {
