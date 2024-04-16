@@ -4,6 +4,7 @@ import { ReactNode } from 'react'
 import {
   ArrowLeftRight,
   BarChart3,
+  Binary,
   CaseSensitive,
   Fingerprint,
   FolderTree,
@@ -104,13 +105,20 @@ export function Navbar({ isOnDrawer = false }: Props) {
           title="Ascii File Tree"
           path="/misc/tree"
         />
+      </Section>
 
+      <Section title="Converters">
         <NavbarItem
           isOnDrawer={isOnDrawer}
-          disabled
+          Icon={Binary}
+          title="Bases"
+          path="/converter/bases"
+        />
+        <NavbarItem
+          isOnDrawer={isOnDrawer}
           Icon={ArrowLeftRight}
-          title="Converter"
-          path="/misc/converter"
+          title="Datas"
+          path="/converter/datas"
         />
       </Section>
     </div>
