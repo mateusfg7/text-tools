@@ -90,15 +90,15 @@ export function Navbar({ isOnDrawer = false }: Props) {
           title="Base64"
           path="/security/base64"
         />
-      </Section>
-
-      <Section title="Misc">
         <NavbarItem
           isOnDrawer={isOnDrawer}
           Icon={KeyRound}
           title="Password Generator"
-          path="/misc/password"
+          path="/security/password"
         />
+      </Section>
+
+      <Section title="Misc">
         <NavbarItem
           isOnDrawer={isOnDrawer}
           Icon={FolderTree}
