@@ -11,7 +11,7 @@ describe('Get Sentences', () => {
       ' awesome!',
       ' hahaha.',
       ' lol!!!',
-      " what's Going on????",
+      " what's Going on????"
     ]
 
     expect(getSentences(text)).toEqual(expected)

@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'Converter Data'
 }
 
-export default function ConverterDataLayout({ children }: { children: ReactNode }) {
+export default function ConverterDataLayout({
+  children
+}: {
+  children: ReactNode
+}) {
   return children
 }

@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'Convert Bases'
 }
 
-export default function ConverterBasesLayout({ children }: { children: ReactNode }) {
+export default function ConverterBasesLayout({
+  children
+}: {
+  children: ReactNode
+}) {
   return children
 }
