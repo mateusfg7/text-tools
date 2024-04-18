@@ -59,36 +59,36 @@ export function Navbar({ isOnDrawer = false }: Props) {
         />
       </Section>
 
-      <Section title="Cryptography">
+      <Section title="Security & Ciphers">
         <NavbarItem
           isOnDrawer={isOnDrawer}
           Icon={CaseSensitive}
           title="Caesar cipher"
-          path="/cryptography/caesar"
+          path="/security/caesar"
         />
         <NavbarItem
           isOnDrawer={isOnDrawer}
           Icon={Heading1}
           title="Letter to number"
-          path="/cryptography/letter-number"
+          path="/security/letter-number"
         />
         <NavbarItem
           isOnDrawer={isOnDrawer}
           Icon={MoreHorizontal}
           title="Morse Code"
-          path="/cryptography/morse"
+          path="/security/morse"
         />
         <NavbarItem
           isOnDrawer={isOnDrawer}
           Icon={Fingerprint}
           title="Hash functions"
-          path="/cryptography/hash"
+          path="/security/hash"
         />
         <NavbarItem
           isOnDrawer={isOnDrawer}
           Icon={LockKeyhole}
           title="Base64"
-          path="/cryptography/base64"
+          path="/security/base64"
         />
       </Section>
 
