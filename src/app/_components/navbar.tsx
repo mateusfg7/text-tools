@@ -57,6 +57,13 @@ export function Navbar({ isOnDrawer = false }: Props) {
           title="Statistics"
           path="/text/statistics"
         />
+
+        <NavbarItem
+          isOnDrawer={isOnDrawer}
+          Icon={FolderTree}
+          title="Ascii File Tree"
+          path="/text/tree"
+        />
       </Section>
 
       <Section title="Security & Ciphers">
@@ -95,15 +102,6 @@ export function Navbar({ isOnDrawer = false }: Props) {
           Icon={KeyRound}
           title="Password Generator"
           path="/security/password"
-        />
-      </Section>
-
-      <Section title="Misc">
-        <NavbarItem
-          isOnDrawer={isOnDrawer}
-          Icon={FolderTree}
-          title="Ascii File Tree"
-          path="/misc/tree"
         />
       </Section>
 
