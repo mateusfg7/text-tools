@@ -5,6 +5,7 @@ import {
   ArrowLeftRight,
   BarChart3,
   Binary,
+  Braces,
   CaseSensitive,
   Fingerprint,
   FolderTree,
@@ -114,7 +115,7 @@ export function Navbar({ isOnDrawer = false }: Props) {
         />
         <NavbarItem
           isOnDrawer={isOnDrawer}
-          Icon={ArrowLeftRight}
+          Icon={Braces}
           title="Datas"
           path="/converter/datas"
         />
