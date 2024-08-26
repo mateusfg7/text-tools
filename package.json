@@ -31,7 +31,7 @@
     "lodash.defaultsdeep": "^4.6.1",
     "lodash.flattendeep": "^4.4.0",
     "lodash.last": "^3.0.0",
-    "lucide-react": "^0.368.0",
+    "lucide-react": "^0.435.0",
     "next": "14.2.1",
     "next-themes": "^0.3.0",
     "nuqs": "^1.17.0",
