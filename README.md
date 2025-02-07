@@ -20,11 +20,6 @@ A collection of text transform tools, like change string case, get text statisti
 - [**Base64**](https://text.mateusf.com/cryptography/base64)
 - [**Password generator**](https://text.mateusf.com/misc/password)
 - [**ASCII File Tree**](https://text.mateusf.com/misc/tree)
-- _Converters_ https://github.com/mateusfg7/text-tools/issues/30
-- _URL Encode/Decode_ https://github.com/mateusfg7/text-tools/issues/29
-- _Hacker Key_ https://github.com/mateusfg7/text-tools/issues/21
-- _Geek Code_ https://github.com/mateusfg7/text-tools/issues/20
-- _Rail Fence Cipher_ https://github.com/mateusfg7/text-tools/issues/14
 
 # Development & Contributing
 
