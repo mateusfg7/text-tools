@@ -24,7 +24,7 @@ export function Footer() {
       />
       <Link
         href="https://github.com/mateusfg7/text-tools/blob/main/LICENSE?ref=https://text.mateusf.com"
-        text="MIT License"
+        text="GPL 3.0 License"
       />
       <Link
         href="https://github.com/mateusfg7/text-tools?ref=https://text.mateusf.com"
